@@ -30,6 +30,10 @@ const menu = [
 ];
 
 class App extends Component {
+	submit() {
+			console.log('submit', this.testInput);
+	}
+
   render() {
     return (
       <main>
@@ -46,6 +50,11 @@ class App extends Component {
 					<Route path='/contact' component={ContactPage} />
 				</div>
 				<RegistrationForm />
+				<br /><br />
+				<div>
+					<input type='text' placeholder='test' ref={(input) => this.testInput = input} />
+					<button onClick={this.submit.bind(this)}>Submit</button>
+				</div>
       </main>
     );
   }
