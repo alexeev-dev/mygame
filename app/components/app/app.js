@@ -5,8 +5,8 @@ import Dropdown from '../dropdown/dropdown';
 import {Link, Route} from 'react-router';
 
 import HomePage from '../../pages/home/home';
-import AboutPage from '../../pages/home/about';
-import ContactPage from '../../pages/home/contact';
+import AboutPage from '../../pages/about/about';
+import ContactPage from '../../pages/contact/contact';
 
 const menu = [
 	{
