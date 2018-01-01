@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from '../dropdown/dropdown';
-{/* import Header from '../header/header'; */}
+import Header from '../header/header';
 
 import {Link, Route} from 'react-router-dom';
 
@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <main>
-        {/* <Header items={menu} /> */}
+        <Header items={menu} />
         <Dropdown />
 				<nav>
 					<Link to='/'>Home</Link>
