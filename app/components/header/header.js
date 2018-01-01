@@ -18,7 +18,21 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  items: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool,
+  /*submit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,*/
+  type: PropTypes.oneOf(['news', 'photos']),
+  user: PropTypes.shape({
+    name: PropTypes.string,
+    age: PropTypes.number
+  }),
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      age: PropTypes.number
+    })
+  )
 };
 
 export default Header;

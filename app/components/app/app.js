@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Dropdown from '../dropdown/dropdown';
 import Header from '../header/header';
 
+import RegistrationForm from '../register/register';
+
 import {Link, Route} from 'react-router-dom';
 
 import HomePage from '../../pages/home/home';
@@ -43,6 +45,7 @@ class App extends Component {
 					<Route path='/about' component={AboutPage} />
 					<Route path='/contact' component={ContactPage} />
 				</div>
+				<RegistrationForm />
       </main>
     );
   }
