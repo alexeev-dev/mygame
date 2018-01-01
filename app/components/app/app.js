@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Dropdown from '../dropdown/dropdown';
-// import Header from '../header/header';
+{/* import Header from '../header/header'; */}
 
-import {Link, Route} from 'react-router';
+import {Link, Route} from 'react-router-dom';
 
 import HomePage from '../../pages/home/home';
 import AboutPage from '../../pages/about/about';
@@ -31,17 +31,17 @@ class App extends Component {
   render() {
     return (
       <main>
-        //<Header items={menu} />
+        {/* <Header items={menu} /> */}
         <Dropdown />
 				<nav>
-					<Link to='/home'>Home</Link>
+					<Link to='/'>Home</Link>
 					<Link to='/about'>About</Link>
 					<Link to='/contact'>Contact</Link>
 				</nav>
 				<div>
-					<Route path='/' component='{HomePage}' />
-					<Route path='/about' component='{AboutPage}' />
-					<Route path='/contact' component='{ContactPage}' />
+					<Route path='/' component={HomePage} />
+					<Route path='/about' component={AboutPage} />
+					<Route path='/contact' component={ContactPage} />
 				</div>
       </main>
     );
