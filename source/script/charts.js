@@ -1,9 +1,9 @@
 $(function () {
     //Better to construct options first and then pass it as a parameter
     var options = {
-        title: {
-            text: "Seleblitysness"
-        },
+        // title: {
+        //     text: "Seleblitysness"
+        // },
         animationEnabled: true,
         data: [
             {
