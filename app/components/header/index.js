@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Logo from './_logo';
-import Menu from './_menu';
-import User from './_user';
+import Logo from './logo';
+import Menu from './menu';
+import User from './user';
 
 
 class Header extends Component {
@@ -10,8 +10,8 @@ class Header extends Component {
   render() {
     return (
       <header>
-    		<div class="container-fluid custom-container">
-    			<div class="row no_row row-header">
+    		<div className="container-fluid custom-container">
+    			<div className="row no_row row-header">
             <Logo />
             <Menu />
             <User />

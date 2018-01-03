@@ -4,9 +4,9 @@ class Logo extends Component {
 
   render() {
     return (
-      <div class="brand-be">
+      <div className="brand-be">
         <a href="#">
-          <img class="logo-c active be_logo"  src="img/logo.png" alt="logo" />
+          <img className="logo-c active be_logo"  src="img/logo.png" alt="logo" />
         </a>
       </div>
     );
