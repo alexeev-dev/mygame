@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, Route} from 'react-router-dom';
 
 import Tags from '../filter/tags';
 
@@ -13,9 +14,9 @@ class ItemPreview extends Component {
           <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
           <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
         </div>
-        <a href="#" className="be-img-block">
-        <img src="img/p1.jpg" alt="omg" />
-        </a>
+        <span className="be-img-block">
+        <Link to='/unicorn'><img src="img/p1.jpg" alt="omg" /></Link>
+        </span>
 
         <Name />
 

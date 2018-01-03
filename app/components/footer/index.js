@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, Route} from 'react-router-dom';
 
 import Slider from './slider';
 
@@ -31,13 +32,13 @@ class Footer extends Component {
     							<div className="row footer-list-footer">
     							<div className="col-md-6">
     							<ul className="link-list">
-    								<li><a href="#">About Us</a></li>
-    								<li><a href="#">Contacts</a></li>
+    								<li><Link to='/about'>About Us</Link></li>
+    								<li><Link to='/contact'>Contacts</Link></li>
     								<li><a href="#">We hire</a></li>
     							</ul></div>
     							<div className="col-md-6">
     							<ul className="link-list">
-    								<li><a href="#">FAQ</a></li>
+    								<li><Link to='/faq'>FAQ</Link></li>
     								<li><a href="#">Help & Support</a></li>
     							</ul>
     							</div>

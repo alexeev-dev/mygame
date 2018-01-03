@@ -5,19 +5,19 @@ class SidebarMenu extends Component {
   render() {
     return (
       <div className="be-vidget">
-        <h3 className="letf-menu-article">
-          Coldown
-        </h3>
-        <div className="creative_filds_block">
-          <div className="ul">
-            <a  data-filter=".category-1" className="filter">Fast		</a>
-            <a data-filter=".category-2" className="filter">Swift			</a>
-            <a data-filter=".category-3" className="filter">Snappy	</a>
-            <a data-filter=".category-4" className="filter">Brisk		</a>
-            <a data-filter=".category-5" className="filter">Plodding		</a>
-          </div>
-        </div>
-      </div>
+						<h3 className="letf-menu-article">
+							Coldown
+						</h3>
+						<div className="creative_filds_block">
+							<div className="ul">
+								<a  data-filter=".category-1" className="filter">Fast		</a>
+								<a data-filter=".category-2" className="filter">Swift			</a>
+								<a data-filter=".category-3" className="filter">Snappy	</a>
+								<a data-filter=".category-4" className="filter">Brisk		</a>
+								<a data-filter=".category-5" className="filter">Plodding		</a>
+							</div>
+						</div>
+					</div>
     );
   }
 }

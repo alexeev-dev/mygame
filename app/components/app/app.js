@@ -5,6 +5,8 @@ import Header from '../header/index';
 import Footer from '../footer/index';
 
 import ItemFull from '../item/item-full';
+import PopupLogin from '../popups/login';
+import PopupRegister from '../popups/register';
 
 import MarketplacePage from '../../pages/marketplace/index';
 import StockPage from '../../pages/stock/index';
@@ -41,6 +43,9 @@ class App extends Component {
 				<Route path='/privacy_policy' component={InnerPrivacyPage} />
 
 				<Footer />
+
+        <PopupLogin />
+        <PopupRegister />
       </main>
     );
   }
