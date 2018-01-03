@@ -1,0 +1,33 @@
+import React, { Component } from 'react';
+
+import IconsMain from './icons-main';
+import Tags from './tags';
+
+class ItemPreview extends Component {
+  render() {
+    return (
+      <div className="be-post">
+        <div className="info-block">
+          <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
+          <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
+        </div>
+        <a href="#" className="be-img-block">
+        <img src="img/p1.jpg" alt="omg" />
+        </a>
+        <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
+        <span className="just_part">
+          <span><i className="fa fa-line-chart"></i> +23.4453</span>
+          <span><i className="fa fa-cubes"></i> Gen-1</span>
+        </span>
+        <Tags />
+        <div className="author-post">
+          <img src="img/a1.png" alt="" className="ava-author" />
+          <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
+        </div>
+        <IconsMain />
+      </div>
+    );
+  }
+}
+
+export default ItemPreview;

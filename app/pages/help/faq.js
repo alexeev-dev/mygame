@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SidebarMenu from '../../components/pages/sidebar_menu';
+
 class FaqPage extends Component {
   render() {
     return (
@@ -8,23 +10,7 @@ class FaqPage extends Component {
     			<h2 className="content-title">FAQs</h2>
     			<div className="row">
     				<div className="left-feild col-xs-12 col-sm-3">
-    					<div className="be-vidget">
-    						<h3 className="letf-menu-article">
-    							Choose Category
-    						</h3>
-    						<div className="creative_filds_block">
-    							<div className="ul">
-    								<a href="blog-detail-2.html">Basic Information</a>
-    								<a href="blog-detail-2.html">How add new project</a>
-    								<a href="blog-detail-2.html">Post new job</a>
-    								<a href="blog-detail-2.html">How add project in progress</a>
-    								<a href="blog-detail-2.html">Security</a>
-    								<a href="blog-detail-2.html">Search work</a>
-    								<a href="blog-detail-2.html">About customes</a>
-
-    							</div>
-    						</div>
-    					</div>
+    					<SidebarMenu />
     				</div>
     				<div className="col-xs-12 col-sm-9">
                         <div className="accordion style-2">

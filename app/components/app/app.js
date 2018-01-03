@@ -4,7 +4,7 @@ import {Link, Route} from 'react-router-dom';
 import Header from '../header/index';
 import Footer from '../footer/index';
 
-import ItemFull from '../unit/item-full';
+import ItemFull from '../item/item-full';
 
 import MarketplacePage from '../../pages/marketplace/index';
 import StockPage from '../../pages/stock/index';
