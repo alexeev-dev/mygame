@@ -1,38 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
+import Logo from './_logo';
+import Menu from './_menu';
+import User from './_user';
+
 
 class Header extends Component {
 
   render() {
-    console.log('items', this.props.items);
     return (
-      <nav>
-        <ul>
-        {this.props.items.map((item, index) =>
-          <li key={index}><a href={item.url}>{item.label}</a></li>
-        )}
-        </ul>
-      </nav>
+      <header>
+    		<div class="container-fluid custom-container">
+    			<div class="row no_row row-header">
+            <Logo />
+            <Menu />
+            <User />
+    			</div>
+    		</div>
+    	</header>
     );
   }
 }
-
-Header.propTypes = {
-  items: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool,
-  /*submit: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,*/
-  type: PropTypes.oneOf(['news', 'photos']),
-  user: PropTypes.shape({
-    name: PropTypes.string,
-    age: PropTypes.number
-  }),
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      age: PropTypes.number
-    })
-  )
-};
 
 export default Header;
