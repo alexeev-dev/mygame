@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import Tags from '../item/tags';
-import ItemPreview from '../item/item-preview';
 
+import ItemPreview from '../item/item-preview';
 import SidebarMenu from '../pages/sidebar_menu';
 
 import Search from './search';
 import Dropdown from './dropdown';
+import Tags from './tags';
 import Color from './color';
 
 class Filter extends Component {

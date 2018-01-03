@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class AboutPage extends Component {
+class Name extends Component {
   render() {
     return (
-      <div>
-				aboutpage
-			</div>
+      <h5 className="be-post-title to">
+        Mr. Incredible Unicorn
+      </h5>
     );
   }
 }
 
-export default AboutPage;
+export default Name;

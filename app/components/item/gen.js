@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-class AboutPage extends Component {
+class Gen extends Component {
   render() {
     return (
-      <div>
-				aboutpage
-			</div>
+      <img src="img/gen.png" />
     );
   }
 }
 
-export default AboutPage;
+export default Gen;

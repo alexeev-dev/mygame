@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
+import Tags from '../filter/tags';
+
 import IconsMain from './icons-main';
-import Tags from './tags';
+import Name from './name';
 
 class ItemPreview extends Component {
   render() {
@@ -14,7 +16,9 @@ class ItemPreview extends Component {
         <a href="#" className="be-img-block">
         <img src="img/p1.jpg" alt="omg" />
         </a>
-        <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
+
+        <Name />
+
         <span className="just_part">
           <span><i className="fa fa-line-chart"></i> +23.4453</span>
           <span><i className="fa fa-cubes"></i> Gen-1</span>
