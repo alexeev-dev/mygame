@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ItemPreview extends Component {
+class AboutPage extends Component {
   render() {
     return (
       <div>
@@ -10,4 +10,4 @@ class ItemPreview extends Component {
   }
 }
 
-export default ItemPreview;
+export default AboutPage;

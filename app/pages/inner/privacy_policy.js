@@ -11,7 +11,7 @@ class InnerPrivacyPage extends Component {
     					<div className="col-xs-12 col-md-10 col-md-offset-1">
     						<div className="blog-post be-large-post type-2" >
     							<div className="be-large-post-align blog-content">
-    								<div className="be-text-tags clearfix custom-a-b" style="padding-top: 60px;">
+    								<div className="be-text-tags clearfix custom-a-b">
     									<div className="post-date">
     										<i className="fa fa-clock-o"></i> January 01, 2018
     									</div>

@@ -4,6 +4,8 @@ import {Link, Route} from 'react-router-dom';
 import Header from '../header/index';
 import Footer from '../footer/index';
 
+import ItemFull from '../unit/item-full';
+
 import MarketplacePage from '../../pages/marketplace/index';
 import StockPage from '../../pages/stock/index';
 import LabPage from '../../pages/lab/index';
@@ -25,15 +27,17 @@ class App extends Component {
         <Header />
 
 				<Route exact path='/' component={MarketplacePage} />
-				<Route exact path='/stock' component={StockPage} />
-				<Route exact path='/lab' component={LabPage} />
+				<Route path='/stock' component={StockPage} />
+				<Route path='/lab' component={LabPage} />
+
+        <Route path='/unicorn' component={ItemFull} />
 
 				<Route path='/user' component={UserPage} />
-				<Route path='/action' component={ActionPage} />
+				<Route path='/actions' component={ActionPage} />
 
 				<Route path='/faq' component={FaqPage} />
 				<Route path='/about' component={AboutPage} />
-				<Route path='/contact' component={AboutPage} />
+				<Route path='/contact' component={ContactPage} />
 				<Route path='/privacy_policy' component={InnerPrivacyPage} />
 
 				<Footer />

@@ -22,16 +22,16 @@ class StockPage extends Component {
   									    </th>
 
   									    <th className="col-xs-4">Unicorn <i className="fa fa-clock-o"></i> <i className="fa fa-chevron-down"></i></th>
-  									    <th className="col-xs-1 text-center" style="padding: 0;">
+  									    <th className="col-xs-1 text-center">
   									    	<i className="fa fa-heart-o"></i> <i className="fa fa-chevron-down"></i>
   									    </th>
-  									    <th className="col-xs-1 text-center" style="padding: 0;">
+  									    <th className="col-xs-1 text-center">
   									    	<i className="fa fa fa-eye"></i> <i className="fa fa-chevron-down"></i>
   									    </th>
-  									    <th className="col-xs-1 text-center" style="padding: 0;">
+  									    <th className="col-xs-1 text-center">
   									    	<i className="fa fa-comment-o"></i> <i className="fa fa-chevron-down"></i>
   									    </th>
-  											<th className="col-xs-1 text-center" style="padding: 0;">
+  											<th className="col-xs-1 text-center">
   									    	<i className="fa fa-btc "></i> <i className="fa fa-chevron-down"></i>
   									    </th>
   									    <th className="col-xs-5">Owners Story </th>
