@@ -6,7 +6,7 @@ class Item extends Component {
     const {head, hair, corn, ears, eyes} = this.props.gen;
     const {color} = this.props;
 
-    const colorValue = (hue) => `hsv(${hue}, 50%, 100%)`;
+    const colorValue = (hue) => `hsl(${hue}, 50%, 50%)`;
 
     return (
       <div className="unicorn">
@@ -35,9 +35,9 @@ class Item extends Component {
   				</svg>
   			</div>
 
-  			<div className={`corn type-${corn}`}></div>
-        <div className={`corn type-${ears}`}></div>
-        <div className={`corn type-${eyes}`}></div>
+        <div className={`corn type-${corn}`}></div>
+        <div className={`ears type-${ears}`}></div>
+        <div className={`eyes type-${eyes}`}></div>
 
         <form><input id="nameInput" type="text" /><button id="ourButton">buy</button></form>
   		</div>
