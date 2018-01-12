@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import Hero from '../../components/pages/hero';
-import Filter from '../../components/filter/index';
+import Item from '../../components/item/item';
 
 class MarketplacePage extends Component {
   render() {
     return (
       <div id="content-block">
         <Hero />
-        <Filter />
+        <Item />
       </div>
     );
   }
