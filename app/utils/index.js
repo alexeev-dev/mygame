@@ -1,5 +1,5 @@
 // Here's how we would access our contract:
-var abi = [
+const abi = [
 	{
 		"constant": true,
 		"inputs": [
@@ -60,23 +60,25 @@ var abi = [
 		"type": "function"
 	}
 ]
-var ZombieFactoryContract = web3.eth.contract(abi)
-var contractAddress = 0x07dB39EeA5e6418197d84d3fC7fd2aBf3D7e1b91
-var ZombieFactory = ZombieFactoryContract.at(contractAddress)
+const ZombieFactoryContract = web3.eth.contract(abi)
+const contractAddress = 0x07dB39EeA5e6418197d84d3fC7fd2aBf3D7e1b91
+const ZombieFactory = ZombieFactoryContract.at(contractAddress)
 // `ZombieFactory` has access to our contract's public functions and events
 
-// some sort of event listener to take the text input:
-$("#ourButton").click(function(e) {
-  var name = $("#nameInput").val()
-  // Call our contract's `createRandomZombie` function:
-  ZombieFactory.createRandomZombie(name)
-})
+// Call our contract's `createRandomZombie` function:
+const makeZombie = (name) => {ZombieFactory.createRandomZombie(name)}
 
 // Listen for the `NewZombie` event, and update the UI
-var event = ZombieFactory.NewZombie(function(error, result) {
-  if (error) return
-  generateZombie(result.zombieId, result.name, result.dna)
-})
+let event;
+const bindZombie = (callback) => {
+	event = ZombieFactory.NewZombie(function(error, result) {
+	  if (error) return
+		const details = generateZombie(result.zombieId, result.name, result.dna)
+		if (typeof callback === 'function') {
+			callback(callback)
+		}
+	})
+}
 
 // take the Zombie dna, and update our image
 function generateZombie(id, name, dna) {

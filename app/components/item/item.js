@@ -1,7 +1,25 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 
+import {makeZombie, bindZombie} from '../../utils/index'
+
 class Item extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {value: ''}
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value})
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    makeZombie(this.state.value)
+  }
+
   render() {
     const {head, hair, corn, ears, eyes} = this.props.gen;
     const {color} = this.props;
@@ -39,7 +57,7 @@ class Item extends Component {
         <div className={`ears type-${ears}`}></div>
         <div className={`eyes type-${eyes}`}></div>
 
-        <form><input id="nameInput" type="text" /><button id="ourButton">buy</button></form>
+        <form><input type="text" onChange={this.handleChange} /><button>buy</button></form>
   		</div>
     );
   }
