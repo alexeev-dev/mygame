@@ -34,6 +34,7 @@ class Item extends Component {
   			<div className="ears type-1"></div>
   			<div className="eyes type-1"></div>
 
+        <form><input id="nameInput" type="text" /><button id="ourButton">buy</button></form>
   		</div>
     );
   }
