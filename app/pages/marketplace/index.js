@@ -8,7 +8,7 @@ class MarketplacePage extends Component {
     return (
       <div id="content-block">
         <Hero />
-        <Item gen={{head: 0, hair: 0, corn: 0, ears: 0, eyes: 0}} color={{head: 0, hair: 0}} />
+        <Item gen={{head: 1, hair: 3}} />
       </div>
     );
   }

@@ -3,6 +3,8 @@ import {Link, Route} from 'react-router-dom';
 
 class Item extends Component {
   render() {
+    const {head, hair} = this.props.gen;
+    
     return (
       <div className="unicorn">
 
