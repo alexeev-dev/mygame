@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Hero from '../../components/pages/hero';
 import Item from '../../components/item/item';
 
-import bindZombie from '../../utils/index'
+import {bindZombie} from '../../utils/index'
 
 class MarketplacePage extends Component {
   constructor(props) {
