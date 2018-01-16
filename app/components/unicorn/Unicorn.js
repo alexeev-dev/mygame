@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 
-import {makeZombie, bindZombie} from '../../utils/index'
-
 class Item extends Component {
   constructor(props) {
     super(props)
@@ -17,7 +15,7 @@ class Item extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    makeZombie(this.state.value)
+    this.props.smart.make(this.state.value)
     console.log('formed NOW')
   }
 

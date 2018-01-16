@@ -41,7 +41,19 @@ class PageMarketplace extends Component {
     return (
       <div id="content-block">
         <Hero />
-        <Item gen={{head: headChoice, hair: hairChoice, corn: cornChoice, ears: earsChoice, eyes: eyesChoise}} color={{head: headColor, hair: hairColor}} />
+        <Unicorn gen={{
+            head: headChoice,
+            hair: hairChoice,
+            corn: cornChoice,
+            ears: earsChoice,
+            eyes: eyesChoise
+          }}
+          color={{
+            head: headColor,
+            hair: hairColor
+          }}
+          smart={this.props.smart}
+        />
         <Filter />
       </div>
     );
