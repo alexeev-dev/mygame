@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 
 
 import UnicornPreview from '../components/unicorn/Preview';
-import SidebarMenu from '../ui/SidebarMenu';
+import SidebarMenu from '../components/ui/SidebarMenu';
 
-import Search from '../ui/Search';
-import Dropdown from '../ui/Dropdown';
-import Tags from '../ui/Tags';
-import Color from '../ui/Color';
+import Search from '../components/ui/Search';
+import Dropdown from '../components/ui/Dropdown';
+import Tags from '../components/ui/Tags';
+import SelectColor from '../components/ui/SelectColor';
 
 class Filter extends Component {
   render() {
@@ -59,7 +59,7 @@ class Filter extends Component {
                   More Filtres
                 </h3>
 
-                <Color />
+                <SelectColor />
 
               </div>
             </div>

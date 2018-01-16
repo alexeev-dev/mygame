@@ -21,7 +21,7 @@ import PageActions from '../../pages/Actions';
 import PageFaq from '../../pages/Faq';
 import PageAbout from '../../pages/About';
 import PageContact from '../../pages/Contact';
-import PagePrivacy_policy from '../../pages/PagePrivacy_policy';
+import PagePrivacy_policy from '../../pages/Privacy_policy';
 
 
 class App extends Component {
