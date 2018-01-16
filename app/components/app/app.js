@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 
+import SmartUnicorn from '../../utils'
+
 import Header from './Header';
 import Footer from './Footer';
 
@@ -23,13 +25,18 @@ import PagePrivacy_policy from '../../pages/PagePrivacy_policy';
 
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.smart = new SmartUnicorn()
+    this.unicornReady = this.unicornReady.bind(this)
+  }
 
   render() {
     return (
       <main>
         <Header />
 
-				<Route exact path='/' component={PageMarketplace} />
+				<Route exact path='/' component={PageMarketplace} smart={this.smart}/>
 				<Route path='/stock' component={PageStock} />
 				<Route path='/laboratory' component={PageLaboratory} />
 
