@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 
-import Header from '../header/index';
-import Footer from '../footer/index';
+import Header from './Header';
+import Footer from './Footer';
 
-import ItemFull from '../item/item-full';
-import PopupLogin from '../popups/login';
-import PopupRegister from '../popups/register';
+import UnicornFull from '../unicorn/Full';
 
-import MarketplacePage from '../../pages/marketplace/index';
-import StockPage from '../../pages/stock/index';
-import LabPage from '../../pages/lab/index';
+import PopupInvite from '../popups/Invite';
+import PopupRegister from '../popups/Register';
 
-import UserPage from '../../pages/user/index';
-import ActionPage from '../../pages/user/actions';
+import PageMarketplace from '../../pages/Marketplace';
+import PageStock from '../../pages/Stock';
+import PageLaboratory from '../../pages/Laboratory';
 
-import FaqPage from '../../pages/help/faq';
-import AboutPage from '../../pages/about/index';
-import ContactPage from '../../pages/contact/index';
-import InnerPrivacyPage from '../../pages/inner/privacy_policy';
+import PageUser from '../../pages/User';
+import PageActions from '../../pages/Actions';
+
+import PageFaq from '../../pages/Faq';
+import PageAbout from '../../pages/About';
+import PageContact from '../../pages/Contact';
+import PagePrivacy_policy from '../../pages/PagePrivacy_policy';
 
 
 class App extends Component {
@@ -28,23 +29,23 @@ class App extends Component {
       <main>
         <Header />
 
-				<Route exact path='/' component={MarketplacePage} />
-				<Route path='/stock' component={StockPage} />
-				<Route path='/lab' component={LabPage} />
+				<Route exact path='/' component={PageMarketplace} />
+				<Route path='/stock' component={PageStock} />
+				<Route path='/laboratory' component={PageLaboratory} />
 
-        <Route path='/unicorn' component={ItemFull} />
+        <Route path='/unicorn' component={UnicornFull} />
 
-				<Route path='/user' component={UserPage} />
-				<Route path='/actions' component={ActionPage} />
+				<Route path='/owner' component={PageUser} />
+				<Route path='/actions' component={PageActions} />
 
-				<Route path='/faq' component={FaqPage} />
-				<Route path='/about' component={AboutPage} />
-				<Route path='/contact' component={ContactPage} />
-				<Route path='/privacy_policy' component={InnerPrivacyPage} />
+				<Route path='/faq' component={PageFaq} />
+				<Route path='/about' component={PageAbout} />
+				<Route path='/contact' component={PageContact} />
+				<Route path='/privacy_policy' component={PagePrivacy_policy} />
 
 				<Footer />
 
-        <PopupLogin />
+        <PopupInvite />
         <PopupRegister />
       </main>
     );

@@ -1,4 +1,10 @@
 
+if (typeof web3 !== 'undefined') {
+  web3 = new Web3(web3.currentProvider);
+} else {
+  // set the provider you want from Web3.providers
+  web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:3333/"));
+}
 
 // Here's how we would access our contract:
 const abi = [
@@ -63,23 +69,34 @@ const abi = [
 	}
 ]
 const ZombieFactoryContract = web3.eth.contract(abi)
-const contractAddress = 0x07dB39EeA5e6418197d84d3fC7fd2aBf3D7e1b91
+const contractAddress = '0x07db39eea5e6418197d84d3fc7fd2abf3d7e1b91'
 const ZombieFactory = ZombieFactoryContract.at(contractAddress)
 // `ZombieFactory` has access to our contract's public functions and events
 
 // Call our contract's `createRandomZombie` function:
-const makeZombie = (name) => {ZombieFactory.createRandomZombie(name)}
+export const makeZombie = (name) => {
+	ZombieFactory.createRandomZombie(name, function(error, result) {
+		console.log(error, result)
+	});
+}
 
 // Listen for the `NewZombie` event, and update the UI
 let event;
 export const bindZombie = (callback) => {
-	event = ZombieFactory.NewZombie(function(error, result) {
-	  if (error) return
-		const details = generateZombie(result.zombieId, result.name, result.dna)
+	event = ZombieFactory.NewZombie(function zcallback(error, result) {
+		console.log('firefox')
+		console.log(error, result)
+		if (error) return
+		const details = generateZombie(result.args.zombieId, result.args.name, result.args.dna)
+		console.log(details)
+		console.log(result.args.dna);
 		if (typeof callback === 'function') {
-			callback(callback)
+			callback(details)
 		}
 	})
+	console.log('e-start')
+	console.log(event)
+	console.log('e-end')
 }
 
 // take the Zombie dna, and update our image
@@ -88,6 +105,8 @@ function generateZombie(id, name, dna) {
   // pad DNA with leading zeroes if it's less than 16 characters
   while (dnaStr.length < 16)
     dnaStr = "0" + dnaStr
+
+		console.log(dnaStr)
 
   let zombieDetails = {
 
