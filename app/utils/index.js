@@ -79,7 +79,20 @@ const web3 = (
 
 class SmartUnicorn {
 	constructor() {
-    const contract = web3.eth.contract(ABI)
+		this.account = web3.eth.accounts[0];
+		this.events = {
+			login: [],
+			logout: [],
+			ready: []
+		}
+	}
+
+	getAccount() {
+		web3.eth.accounts[0]
+	}
+
+	initFactory() {
+		const contract = web3.eth.contract(ABI)
     const factory = contract.at(CONTRACT_ADDRESS)
     this.contract = contract
     this.factory = factory
@@ -92,15 +105,14 @@ class SmartUnicorn {
   	})
 	}
 
-
 	make(name) {
     this.factory.createRandomZombie(name, (error, result) => {
   		console.log(error, result)
   	})
 	}
 
-	bind(callback) {
-		this.callback = callback
+	bind(event, callback) {
+		this.events[event].push(callback)
 	}
 
 	generate(id, name, dna) {
@@ -119,4 +131,6 @@ class SmartUnicorn {
 	}
 }
 
-export default SmartUnicorn
+const smartUnicorn = new SmartUnicorn()
+
+export default smartUnicorn

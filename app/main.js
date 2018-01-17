@@ -1,10 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './components/app/app';
+import AppContainer from './containers/AppContainer';
+import unicornApp from './reducers';
+
+const store = createStore(unicornApp, applyMiddleware(thunk))
 
 ReactDOM.render((
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <AppContainer/>
+    </Provider>
   </BrowserRouter>), document.getElementById('root'));

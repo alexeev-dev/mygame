@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class UnicornLikesViewsComments extends Component {
   render() {
     return (
-      <div class="info-block">
+      <div className="info-block">
         <div className="be-large-post-align">
           <span><i className="fa fa-heart-o" aria-hidden="true"></i> 253</span>
           <span><i className="fa fa-eye"></i> 753</span>

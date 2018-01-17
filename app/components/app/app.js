@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
 
-import SmartUnicorn from '../../utils'
-
 import Header from './Header';
 import Footer from './Footer';
 
@@ -11,7 +9,7 @@ import UnicornFull from '../unicorn/Full';
 import PopupInvite from '../popups/Invite';
 import PopupRegister from '../popups/Register';
 
-import PageMarketplace from '../../pages/Marketplace';
+import MarketContainer from '../../containers/MarketContainer';
 import PageStock from '../../pages/Stock';
 import PageLaboratory from '../../pages/Laboratory';
 
@@ -23,20 +21,23 @@ import PageAbout from '../../pages/About';
 import PageContact from '../../pages/Contact';
 import PagePrivacy_policy from '../../pages/Privacy_policy';
 
+import smartUnicorn from '../../utils'
+
+import {accountLogin} from '../../actions/account'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.smart = new SmartUnicorn()
-    this.unicornReady = this.unicornReady.bind(this)
+  componentDidMount() {
+    const account = smartUnicorn.getAccount()
+    if (account !== undefined) {
+      this.dispatch(accountLogin('Test', account))
+    }
   }
-
   render() {
     return (
       <main>
         <Header />
 
-				<Route exact path='/' component={PageMarketplace} smart={this.smart}/>
+				<Route exact path='/' component={MarketContainer}/>
 				<Route path='/stock' component={PageStock} />
 				<Route path='/laboratory' component={PageLaboratory} />
 
