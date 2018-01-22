@@ -107,7 +107,7 @@ class SmartUnicorn {
 	}
 
 	watchForAccount() {
-		if (typeof this.web3.eth.accounts[0] !== 'undefined') {
+		if (this.web3.eth.accounts[0] !== undefined) {
 			this.trigger('account', this.web3.eth.accounts[0])
 		} else {
 			setTimeout(this.watchForAccount, 100)
