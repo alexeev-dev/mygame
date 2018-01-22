@@ -91,11 +91,11 @@ class SmartUnicorn {
 		this.handleMetamask = this.handleMetamask.bind(this)
 		this.watchForAccount = this.watchForAccount.bind(this)
 		this.watchForMetamask = this.watchForMetamask.bind(this)
-		this.watchForMetamask()
 		this.events = {
 			'metamask': [this.handleMetamask],
 			'account': [this.handleAccount]
 		}
+		this.watchForMetamask()
 	}
 
 	watchForMetamask() {
@@ -160,7 +160,7 @@ class SmartUnicorn {
 	}
 
 	info() {
-		const metamask = typeof this.web3 !== undefined
+		const metamask = typeof this.web3 !== 'undefined'
 		return {
 			metamask,
 			wallet: metamask ? this.web3.eth.account[0] : undefined

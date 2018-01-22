@@ -1,10 +1,10 @@
 import {LOGIN, LOGOUT, UPDATE} from '../actions/account'
 
-function accountReducer(state = undefined, action) {
+function accountReducer(state = null, action) {
   switch (action.type) {
     case LOGIN:
       return action.account
-    case LOGUT:
+    case LOGOUT:
       return undefined
     case UPDATE:
       return action.account

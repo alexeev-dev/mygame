@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const UserPreview = ({account, onLogin}) => {
-  const isLoggedIn = account !== undefined
+  const isLoggedIn = account !== null
   return (
     <div className="login-header-block">
       <div className="login_block">
