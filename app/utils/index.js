@@ -89,6 +89,9 @@ class SmartUnicorn {
 
 	getAccount() {
 		web3.eth.accounts[0]
+		web3.eth.getBalance('0x00b7FBed82AB6416E02b6aaaD85B7C94Cf83327F', function(error, result) {
+			alert(result);
+		});
 	}
 
 	initFactory() {
@@ -104,6 +107,8 @@ class SmartUnicorn {
   		}
   	})
 	}
+
+
 
 	make(name) {
     this.factory.createRandomZombie(name, (error, result) => {
