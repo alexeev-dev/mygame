@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import Logo from './Logo';
 import Menu from './Menu';
 import UserPreview from '../user/Preview';
-import UserLogin from '../user/Login';
 
 import {showLoginPopup} from '../../actions/login-popup'
 
@@ -27,9 +26,7 @@ export const Header = ({account, handleLogin}) => {
         <div className="row no_row row-header">
           <Logo />
           <Menu isFull={isLoggedIn}/>
-          {isLoggedIn ?
-            <UserPreview account={account}/>
-            : <UserLogin onLogin={this.handleLogin}/>}
+          <UserPreview account={account} onLogin={handleLogin}/>
         </div>
       </div>
     </header>
