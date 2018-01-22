@@ -33,9 +33,13 @@ class App extends Component {
     super(props)
     this.handleMetamask = this.handleMetamask.bind(this)
     this.handleAccount = this.handleAccount.bind(this)
+  }
+
+  componentDidMount() {
     smartUnicorn.on('metamask', this.handleMetamask)
     smartUnicorn.on('account', this.handleAccount)
     const info = smartUnicorn.info()
+    console.log(info)
     if (info.metamask === true) {
       this.handleMetamask()
     }

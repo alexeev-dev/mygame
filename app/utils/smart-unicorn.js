@@ -107,8 +107,8 @@ class SmartUnicorn {
 	}
 
 	watchForAccount() {
-		if (web3.eth.accounts[0] !== 'undefined') {
-			this.trigger('account', web3.eth.account[0])
+		if (typeof this.web3.eth.accounts[0] !== 'undefined') {
+			this.trigger('account', this.web3.eth.accounts[0])
 		} else {
 			setTimeout(this.watchForAccount, 100)
 		}
@@ -150,7 +150,7 @@ class SmartUnicorn {
 	}
 
 	trigger(event, data) {
-		if (typeof this.events[event] === 'array') {
+		if (typeof this.events[event] !== 'undefined') {
 			this.events[event].forEach(callback => {
 				if (typeof callback === 'function') {
 					callback(data)
@@ -163,7 +163,7 @@ class SmartUnicorn {
 		const metamask = typeof this.web3 !== 'undefined'
 		return {
 			metamask,
-			wallet: metamask ? this.web3.eth.account[0] : undefined
+			wallet: metamask ? this.web3.eth.accounts[0] : undefined
 		}
 	}
 }
