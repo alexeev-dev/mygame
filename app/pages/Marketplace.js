@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import Hero from './Hero';
 import Filter from './Filter';
 
-class PageMarketplace extends Component {
+const mapStateToProps = (state) => {
+  return {
+    account: state.account
+  }
+}
+
+class Marketplace extends Component {
   render() {
-    const {isLoggedIn} = this.props
+    const {account} = this.props
     return (
       <div id="content-block">
-        {!isLoggedIn && <Hero/>}
+        {!account && <Hero/>}
         <Filter />
       </div>
     );
   }
 }
 
-export default PageMarketplace;
+export default connect(mapStateToProps)(Marketplace);
