@@ -1,15 +1,15 @@
-export const ACCOUNT_LOGIN = 'ACCOUNT_LOGIN'
-export const ACCOUNT_LOGOUT = 'ACCOUNT_LOGOUT'
-export const ACCOUNT_UPDATE = 'ACCOUNT_UPDATE'
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const UPDATE = 'UPDATE'
 
-export function accountLogin(name, wallet) {
-  return {type: ACCOUNT_LOGIN, name, wallet}
+export function login(account) {
+  return {type: LOGIN, account}
 }
 
-export function accountLogout() {
-  return {type: ACCOUNT_LOGOUT}
+export function logout() {
+  return {type: LOGOUT}
 }
 
-export function accountUpdate(name, wallet) {
-  return {type: ACCOUNT_UPDATE, name, wallet}
+export function update(account) {
+  return {type: UPDATE, account}
 }

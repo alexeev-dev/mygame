@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom';
+import { connect } from 'react-redux'
 
 import Header from './Header';
 import Footer from './Footer';
@@ -9,7 +10,7 @@ import UnicornFull from '../unicorn/Full';
 import PopupInvite from '../popups/Invite';
 import PopupRegister from '../popups/Register';
 
-import MarketContainer from '../../containers/MarketContainer';
+import Marketplace from '../../pages/Marketplace';
 import PageStock from '../../pages/Stock';
 import PageLaboratory from '../../pages/Laboratory';
 
@@ -21,23 +22,46 @@ import PageAbout from '../../pages/About';
 import PageContact from '../../pages/Contact';
 import PagePrivacy_policy from '../../pages/Privacy_policy';
 
-import smartUnicorn from '../../utils'
+import smartUnicorn from '../../utils/smart-unicorn'
+import db from '../../utils/db'
 
-import {accountLogin} from '../../actions/account'
+import {login} from '../../actions/account'
+import {toggleMetamask, setMetamaskAccount} from '../../actions/metamask'
 
 class App extends Component {
-  componentDidMount() {
-    const account = smartUnicorn.getAccount()
-    if (account !== undefined) {
-      this.dispatch(accountLogin('Test', account))
+  constructor(props) {
+    super(props)
+    this.handleMetamask = this.handleMetamask.bind(this)
+    this.handleAccount = this.handleAccount.bind(this)
+    smartUnicorn.on('metamask', this.handleMetamask)
+    smartUnicorn.on('account', this.handleAccount)
+    const info = smartUnicorn.info()
+    if (info.metamask === true) {
+      this.handleMetamask()
+    }
+    if (info.wallet !== undefined) {
+      this.handleAccount(info.wallet)
     }
   }
+
+  handleMetamask() {
+    this.props.dispatch(toggleMetamask(true))
+  }
+
+  handleAccount(wallet) {
+    this.props.dispatch(setMetamaskAccount(wallet))
+    const account = db.findAccount(wallet)
+    if (account !== undefined) {
+      this.props.dispatch(login(account))
+    }
+  }
+
   render() {
     return (
       <main>
         <Header />
 
-				<Route exact path='/' component={MarketContainer}/>
+				<Route exact path='/' component={Marketplace}/>
 				<Route path='/stock' component={PageStock} />
 				<Route path='/laboratory' component={PageLaboratory} />
 
@@ -60,4 +84,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App)
