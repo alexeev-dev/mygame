@@ -10,12 +10,12 @@ const UserPreview = ({account, onLogin}) => {
           <img className="login-user" src="img/login.jpg" alt=""/>
           <span className="be-dropdown-content">Hi, <span>{account.name}</span></span>
           <div className="drop-down-list a-list">
+            <a href="#">Edit</a>
             <a href="#">Invite</a>
-            <a href="#">Logout</a>
           </div>
         </div>
         : <a className="btn-login btn color-1 size-2 hover-2" href="" onClick={onLogin}>
-          <i className="fa fa-user"></i>Log in
+          <i className="fa fa-user"></i>Sign Up
         </a>}
       </div>
     </div>
