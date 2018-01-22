@@ -88,6 +88,7 @@ const makeUnicorn = (zombieId, name, dna) => {
 
 class SmartUnicorn {
 	constructor() {
+		this.handleAccount = this.handleAccount.bind(this)
 		this.handleMetamask = this.handleMetamask.bind(this)
 		this.watchForAccount = this.watchForAccount.bind(this)
 		this.watchForMetamask = this.watchForMetamask.bind(this)
@@ -107,8 +108,8 @@ class SmartUnicorn {
 	}
 
 	watchForAccount() {
-		if (this.web3.eth.accounts[0] !== undefined) {
-			this.trigger('account', this.web3.eth.accounts[0])
+		if (this.web3.eth.defaultAccount !== undefined) {
+			this.trigger('account', this.web3.eth.defaultAccount)
 		} else {
 			setTimeout(this.watchForAccount, 100)
 		}
@@ -120,7 +121,7 @@ class SmartUnicorn {
 	}
 
 	handleAccount() {
-		this.initFactory()
+		//this.initFactory()
 	}
 
 	initFactory() {
@@ -163,7 +164,7 @@ class SmartUnicorn {
 		const metamask = typeof this.web3 !== 'undefined'
 		return {
 			metamask,
-			wallet: metamask ? this.web3.eth.accounts[0] : undefined
+			wallet: metamask ? this.web3.eth.defaultAccount : undefined
 		}
 	}
 }
