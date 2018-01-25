@@ -6,16 +6,23 @@ import Filter from './Filter';
 
 const mapStateToProps = (state) => {
   return {
-    account: state.account
+    metamask: state.metamask,
+    account: state.account,
+    loginPopup: state.loginPopup
   }
 }
 
 class Marketplace extends Component {
   render() {
-    const {account} = this.props
+    const {account, dispatch, metamask, loginPopup} = this.props
     return (
       <div id="content-block">
-        {!account && <Hero/>}
+        {!account &&
+          <Hero
+            dispatch={dispatch}
+            metamask={metamask}
+            loginPopup={loginPopup}
+        />}
         <Filter />
       </div>
     );

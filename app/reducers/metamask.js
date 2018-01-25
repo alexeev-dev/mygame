@@ -2,6 +2,7 @@ import {TOGGLE_METAMASK, SET_METAMASK_ACCOUNT} from '../actions/metamask'
 
 const initialState = {
   account: undefined,
+  network: 'main',
   isOn: false
 }
 

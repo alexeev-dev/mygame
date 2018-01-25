@@ -1,13 +1,22 @@
+import Dexie from 'dexie'
+
 class DB {
-  findAccount(wallet) {
-    return {
-      success: 1,
-      user: {
-        wallet,
-        name: 'Uni Corn',
-        email: 'smart@unicorn.com'
-      }
-    }
+  constructor() {
+    this.db = new Dexie('unicorn')
+    this.db.version(1).stores({
+      accounts: 'id'
+    })
+  }
+
+  saveAccount(account) {
+    return this.db.accounts.add(account)
+  }
+
+  findAccount(id) {
+    return (this.db.accounts
+      .where('id')
+      .equals(id)
+      .toArray())
   }
 }
 

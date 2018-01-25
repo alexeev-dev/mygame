@@ -39,11 +39,10 @@ class App extends Component {
     smartUnicorn.on('metamask', this.handleMetamask)
     smartUnicorn.on('account', this.handleAccount)
     const info = smartUnicorn.info()
-    console.log(info)
     if (info.metamask === true) {
       this.handleMetamask()
     }
-    if (info.wallet !== undefined) {
+    if (info.wallet) {
       this.handleAccount(info.wallet)
     }
   }
@@ -54,10 +53,13 @@ class App extends Component {
 
   handleAccount(wallet) {
     this.props.dispatch(setMetamaskAccount(wallet))
-    const result = db.findAccount(wallet)
-    if (result.success === 1) {
-      this.props.dispatch(login(result.user))
-    }
+    console.log(wallet)
+    db.findAccount(wallet).then((result) => {
+      console.log(result)
+      // this.props.dispatch(login(result.user))
+    }).catch((error) => {
+      console.log(error)
+    })
   }
 
   render() {
