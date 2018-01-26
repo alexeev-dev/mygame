@@ -91,11 +91,13 @@ class SmartUnicorn {
 		this.handleAccount = this.handleAccount.bind(this)
 		this.handleMetamask = this.handleMetamask.bind(this)
 		this.watchForAccount = this.watchForAccount.bind(this)
+		this.watchForNetwork = this.watchForNetwork.bind(this)
 		this.watchForMetamask = this.watchForMetamask.bind(this)
 		this.events = {
 			'metamask': [this.handleMetamask],
 			'account': [this.handleAccount]
 		}
+		this.network = 1
 		this.watchForMetamask()
 	}
 
@@ -110,7 +112,6 @@ class SmartUnicorn {
 	watchForAccount() {
 		this.web3.eth.getAccounts().then((accounts) => {
 			if (accounts.length > 0) {
-				this.web3.eth.defaultAccount = accounts[0]
 				this.trigger('account', accounts[0])
 			} else {
 				setTimeout(this.watchForAccount, 100)
@@ -118,9 +119,27 @@ class SmartUnicorn {
 		})
 	}
 
+	watchForNetwork() {
+		const {net} = this.web3.eth
+		net.getId().then(id => {
+			if (this.network !== id) {
+				switch (id) {
+					case 1:
+						this.trigger('network', 'main')
+						break
+					default:
+						this.trigger('network', 'wrong')
+				}
+				this.network = id
+			}
+			setTimeout(this.watchForNetwork, 200)
+		})
+	}
+
 	handleMetamask() {
 		this.web3 = new Web3(web3.currentProvider)
 		this.watchForAccount()
+		this.watchForNetwork()
 	}
 
 	handleAccount() {

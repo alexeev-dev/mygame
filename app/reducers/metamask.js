@@ -1,4 +1,8 @@
-import {TOGGLE_METAMASK, SET_METAMASK_ACCOUNT} from '../actions/metamask'
+import {
+  TOGGLE_METAMASK,
+  SET_METAMASK_ACCOUNT,
+  SET_METAMASK_NETWORK
+} from '../actions/metamask'
 
 const initialState = {
   account: undefined,
@@ -15,6 +19,10 @@ function metamaskReducer(state = initialState, action) {
     case SET_METAMASK_ACCOUNT:
       return Object.assign({}, state, {
         account: action.account
+      })
+    case SET_METAMASK_NETWORK:
+      return Object.assign({}, state, {
+        network: action.network
       })
     default:
       return state

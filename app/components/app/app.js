@@ -26,18 +26,24 @@ import smartUnicorn from '../../utils/smart-unicorn'
 import db from '../../utils/db'
 
 import {login} from '../../actions/account'
-import {toggleMetamask, setMetamaskAccount} from '../../actions/metamask'
+import {
+  toggleMetamask,
+  setMetamaskAccount,
+  setMetamaskNetwork
+} from '../../actions/metamask'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.handleMetamask = this.handleMetamask.bind(this)
     this.handleAccount = this.handleAccount.bind(this)
+    this.handleNetwork = this.handleNetwork.bind(this)
   }
 
   componentDidMount() {
     smartUnicorn.on('metamask', this.handleMetamask)
     smartUnicorn.on('account', this.handleAccount)
+    smartUnicorn.on('network', this.handleNetwork)
     const info = smartUnicorn.info()
     if (info.metamask === true) {
       this.handleMetamask()
@@ -60,6 +66,10 @@ class App extends Component {
     }).catch((error) => {
       console.log(error)
     })
+  }
+
+  handleNetwork(network) {
+    this.props.dispatch(setMetamaskNetwork(network))
   }
 
   render() {
