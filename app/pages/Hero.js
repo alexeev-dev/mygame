@@ -7,7 +7,8 @@ class Hero extends Component {
     this.handleSignUp = this.handleSignUp.bind(this)
   }
 
-  handleSignUp() {
+  handleSignUp(event) {
+    event.preventDefault()
     this.props.dispatch(showLoginPopup())
   }
 
@@ -21,7 +22,9 @@ class Hero extends Component {
           <p>Do not miss the revolution that is happening right now with UnicornGO!</p>
 
           {!loginPopup.isOpen && <div className="step">
-            <a className="be-register btn color-3 size-1 hover-6"><i className="fa fa-lock"></i>sign up now</a>
+            <a className="be-register btn color-3 size-1 hover-6" onClick={this.handleSignUp}>
+              <i className="fa fa-lock"></i>sign up now
+            </a>
           </div>}
 
           {loginPopup.isOpen && !metamask.isOn && <div className="step">
@@ -41,7 +44,14 @@ class Hero extends Component {
     						<div className="col-xs-12 col-sm-12">
     							<div className="form-group fl_icon">
                     <div className="icon"><img src="img/subject-ico.png" alt="" /></div>
-    								<input className="form-input" type="text" required="" placeholder="Your Wallet" />
+    								<input
+                      className="form-input"
+                      type="text"
+                      required=""
+                      readOnly
+                      placeholder="Your Wallet"
+                      value={metamask.account ? metamask.account : ''}
+                    />
     							</div>
     						</div>
     						<div className="col-xs-12 col-sm-6 fl_icon">
