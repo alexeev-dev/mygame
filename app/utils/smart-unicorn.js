@@ -113,6 +113,7 @@ class SmartUnicorn {
 		this.web3.eth.getAccounts().then((accounts) => {
 			if (accounts.length > 0) {
 				this.trigger('account', accounts[0])
+				this.web3.eth.defaultAccount = accounts[0]
 			} else {
 				setTimeout(this.watchForAccount, 100)
 			}
@@ -140,6 +141,11 @@ class SmartUnicorn {
 		this.web3 = new Web3(web3.currentProvider)
 		this.watchForAccount()
 		this.watchForNetwork()
+	}
+
+	signMessage(message) {
+		const address = this.web3.eth.defaultAccount
+		return this.web3.eth.sign(message, address)
 	}
 
 	handleAccount() {

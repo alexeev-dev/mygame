@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {showLoginPopup} from '../actions/login-popup';
+import {signUp} from '../actions/account';
 
 const signUpStep = (metamask, loginPopup) => {
   if (loginPopup.isOpen) {
@@ -48,11 +49,30 @@ class Hero extends Component {
   constructor(props) {
     super(props)
     this.handleSignUp = this.handleSignUp.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {
+      name: '',
+      email: ''
+    }
   }
 
   handleSignUp(event) {
     event.preventDefault()
     this.props.dispatch(showLoginPopup())
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    const {name, email} = this.state
+    const wallet = this.props.metamask.account
+    this.props.dispatch(signUp(name, email, wallet))
   }
 
   render() {
@@ -82,7 +102,7 @@ class Hero extends Component {
           </div>}
 
           {step === 4 && <div className="step">
-            <form className="form-block register_me">
+            <form className="form-block register_me" onSubmit={this.handleSubmit}>
     					<div className="row">
     						<div className="col-xs-12 col-sm-12">
     							<div className="form-group fl_icon">
@@ -100,13 +120,29 @@ class Hero extends Component {
     						<div className="col-xs-12 col-sm-6 fl_icon">
     							<div className="form-group fl_icon">
     								<div className="icon"><img src="img/user-g-ico.png" alt="" /></div>
-    								<input className="form-input" type="text" required="" placeholder="Your Name" />
+    								<input
+                      className="form-input"
+                      name="name"
+                      type="text"
+                      required=""
+                      value={this.state.name}
+                      placeholder="Your Name"
+                      onChange={this.handleChange}
+                    />
     							</div>
     						</div>
     						<div className="col-xs-12 col-sm-6 fl_icon">
     							<div className="form-group fl_icon">
     								<div className="icon"><img src="img/mail-g-ico.png" alt="" /></div>
-    								<input className="form-input" type="text" required="" placeholder="Your email" />
+    								<input
+                      className="form-input"
+                      name="email"
+                      type="text"
+                      required=""
+                      value={this.state.email}
+                      placeholder="Your email"
+                      onChange={this.handleChange}
+                    />
     							</div>
     						</div>
     						<button className="btn color-1 size-2 hover-1 pull-right">submit</button>

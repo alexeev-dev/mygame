@@ -61,7 +61,8 @@ class App extends Component {
     this.props.dispatch(setMetamaskAccount(wallet))
     db.findAccount(wallet).then((result) => {
       if (result.length > 0) {
-        this.props.dispatch(login(result[0].user))
+        let account = result[0]
+        this.props.dispatch(login(account))
       }
     }).catch((error) => {
       console.log(error)
