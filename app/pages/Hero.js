@@ -71,6 +71,10 @@ class Hero extends Component {
     				</form>
           </div>}
 
+          <div className="step">
+            <img src="img/login-metamask.png" alt="" />
+          </div>
+
         </div>
       </div>
     );
