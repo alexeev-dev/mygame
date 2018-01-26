@@ -19,16 +19,12 @@ export function update(account) {
 
 export function signUp(name, email, wallet) {
   return (dispatch) => {
-    smartUnicorn.signMessage('Signup in UnicornGO')
-      .then((hash) => {
-        return db.saveAccount({
-          id: wallet, name, email, hash
-        })
-      })
-      .then((result) => {
-        dispatch(login({
-          id: wallet, name, email, hash
-        }))
-      })
+    db.saveAccount({
+      id: wallet, name, email
+    }).then((result) => {
+      dispatch(login({
+        id: wallet, name, email
+      }))
+    })
   }
 }
