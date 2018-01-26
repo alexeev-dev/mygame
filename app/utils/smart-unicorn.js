@@ -108,16 +108,12 @@ class SmartUnicorn {
 	}
 
 	watchForAccount() {
-		this.web3.eth.getAccounts((error, result) => {
-			if (!error) {
-				if (result.length > 0) {
-					this.web3.eth.defaultAccount = result[0]
-					this.trigger('account', result[0])
-				} else {
-					setTimeout(this.watchForAccount, 100)
-				}
+		this.web3.eth.getAccounts().then((accounts) => {
+			if (accounts.length > 0) {
+				this.web3.eth.defaultAccount = accounts[0]
+				this.trigger('account', accounts[0])
 			} else {
-				console.error(error)
+				setTimeout(this.watchForAccount, 100)
 			}
 		})
 	}
