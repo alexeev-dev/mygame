@@ -25,7 +25,7 @@ import PagePrivacy_policy from '../../pages/Privacy_policy';
 import smartUnicorn from '../../utils/smart-unicorn'
 import db from '../../utils/db'
 
-import {login} from '../../actions/account'
+import {login, logout} from '../../actions/account'
 import {
   toggleMetamask,
   setMetamaskAccount,
@@ -59,10 +59,12 @@ class App extends Component {
 
   handleAccount(wallet) {
     this.props.dispatch(setMetamaskAccount(wallet))
-    db.findAccount(wallet).then((result) => {
+    db.findAccount(wallet || '').then((result) => {
       if (result.length > 0) {
         let account = result[0]
         this.props.dispatch(login(account))
+      } else {
+        this.props.dispatch(logout())
       }
     }).catch((error) => {
       console.log(error)

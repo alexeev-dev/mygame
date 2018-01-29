@@ -5,7 +5,7 @@ function accountReducer(state = null, action) {
     case LOGIN:
       return action.account
     case LOGOUT:
-      return undefined
+      return null
     case UPDATE:
       return action.account
     default:

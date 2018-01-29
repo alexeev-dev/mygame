@@ -112,11 +112,17 @@ class SmartUnicorn {
 	watchForAccount() {
 		this.web3.eth.getAccounts().then((accounts) => {
 			if (accounts.length > 0) {
-				this.trigger('account', accounts[0])
-				this.web3.eth.defaultAccount = accounts[0]
+				if (this.web3.eth.defaultAccount !== accounts[0]) {
+					this.web3.eth.defaultAccount = accounts[0]
+					this.trigger('account', accounts[0])
+				}
 			} else {
-				setTimeout(this.watchForAccount, 100)
+				if (this.web3.eth.defaultAccount != undefined) {
+					this.web3.eth.defaultAccount = undefined
+					this.trigger('account', undefined)
+				}
 			}
+			setTimeout(this.watchForAccount, 500)
 		})
 	}
 
@@ -124,6 +130,7 @@ class SmartUnicorn {
 		const {net} = this.web3.eth
 		net.getId().then(id => {
 			if (this.network !== id) {
+				this.network = id
 				switch (id) {
 					case 1:
 						this.trigger('network', 'main')
@@ -131,7 +138,6 @@ class SmartUnicorn {
 					default:
 						this.trigger('network', 'wrong')
 				}
-				this.network = id
 			}
 			setTimeout(this.watchForNetwork, 200)
 		})
