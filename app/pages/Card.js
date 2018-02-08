@@ -7,11 +7,11 @@ class Card extends Component {
     this.handleComment = this.handleComment.bind(this)
   }
 
-  handleLike(event){
+  handleLike(id){
     this.props.onclick(id, 'like')
   }
 
-  handleComment(event){
+  handleComment(id){
     this.props.onclick(id, 'comment')
   }
 
