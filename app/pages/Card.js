@@ -7,17 +7,19 @@ class Card extends Component {
     this.handleComment = this.handleComment.bind(this)
   }
 
-  handleLike(id){
+  handleLike() {
+    const {id} = this.props.unicorn
     this.props.onclick(id, 'like')
   }
 
-  handleComment(id){
+  handleComment() {
+    const {id} = this.props.unicorn
     this.props.onclick(id, 'comment')
   }
 
   render() {
-    const unicorn = this.props.unicorn 
-    /* Заглушка для unicorn, remove in production*/ 
+    const unicorn = this.props.unicorn
+    /* Заглушка для unicorn, remove in production*/
     ||
     {
       id: 153330988,
@@ -43,11 +45,9 @@ class Card extends Component {
       }
     }
 
-    const tags = unicorn.tags.map((tag) => {
-      return (
-        <a key={tag} href="#" className="be-post-tag">{tag}</a>
-      )
-    })
+    const tags = unicorn.tags.map((tag) => (
+      <a key={tag} href="#" className="be-post-tag">{tag}</a>
+    ))
 
     return (
       <div className="be-post">
@@ -71,9 +71,9 @@ class Card extends Component {
           <span>by <a href="page1.html">{unicorn.owner.name} <span><i className="fa fa-globe"></i> {unicorn.country}</span></a></span>
         </div>
         <div className="info-block">
-          <span onClick={() => this.handleLike(unicorn.id)}><i className="fa fa-heart-o" aria-hidden="true"></i> {unicorn.counters.likes}</span>
+          <span onClick={this.handleLike}><i className="fa fa-heart-o" aria-hidden="true"></i> {unicorn.counters.likes}</span>
           <span><i className="fa fa-eye"></i> {unicorn.counters.views}</span>
-          <span onClick={() => this.handleComment(unicorn.id)}><i className="fa fa-comment-o"></i> {unicorn.counters.comments}</span>
+          <span onClick={this.handleComment}><i className="fa fa-comment-o"></i> {unicorn.counters.comments}</span>
         </div>
       </div>
     );
