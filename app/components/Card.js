@@ -19,32 +19,7 @@ class Card extends Component {
 
   render() {
     const unicorn = this.props.unicorn
-    /* Заглушка для unicorn, remove in production*/
-    ||
-    {
-      id: 153330988,
-      dna: 8890509998,
-      name: 'Mr. Incredible Unicorn',
-      price: 0.042,
-      reproduction: {
-        type: 'extra',
-        price: 0.00093
-      },
-      popularity: 23.4453,
-      generation: 1,
-      tags: ['Nice', 'Gute', 'Usual', 'Just', 'Angry'],
-      owner: {
-        name: 'Alex Alexeev',
-        url: '/alex_alexeev'
-      },
-      country: 'USA',
-      counters: {
-        likes: 50,
-        views: 150,
-        comments: 20
-      }
-    }
-
+   
     const tags = unicorn.tags.map((tag) => (
       <a key={tag} href="#" className="be-post-tag">{tag}</a>
     ))
@@ -68,7 +43,7 @@ class Card extends Component {
         </span>
         <div className="author-post">
           <img src="img/a1.png" alt="" className="ava-author" />
-          <span>by <a href="page1.html">{unicorn.owner.name} <span><i className="fa fa-globe"></i> {unicorn.country}</span></a></span>
+          <span>by <a href={unicorn.owner.url}>{unicorn.owner.name} <span><i className="fa fa-globe"></i> {unicorn.country}</span></a></span>
         </div>
         <div className="info-block">
           <span onClick={this.handleLike}><i className="fa fa-heart-o" aria-hidden="true"></i> {unicorn.counters.likes}</span>
