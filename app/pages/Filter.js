@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import UnicornPreview from '../components/unicorn/Preview';
 import SidebarMenu from '../components/ui/SidebarMenu';
-import Card from '../components/Card'
+import Card from '../components/Card';
 
-import Search from '../components/ui/Search';
-import Dropdown from '../components/ui/Dropdown';
+import Search from '../common/Search';
+import Dropdown from '../common/Dropdown';
+import SideBlock from '../components/ui/SideBlock';
 import Tags from '../components/ui/Tags';
 import SelectColor from '../components/ui/SelectColor';
 
@@ -55,6 +56,14 @@ const unicorns = [{
   }
 }]
 
+//Заглушка для тэгов dropdown
+const dropDownList = [
+  {id: 0, value: 'All Gens'},
+  {id: 1, value: 'Gen - 0'},
+  {id: 2, value: 'Gen - 1'},
+  {id: 3, value: 'Gen - 2'},
+];
+
 class Filter extends Component {
   render() {
     return (
@@ -63,14 +72,14 @@ class Filter extends Component {
           <div className="row">
             <div className="col-md-2 left-feild">
 
-              <Search />
+              <Search onChange={function(){}}/>
 
             </div>
             <div className="col-md-10 ">
               <div className="for-be-dropdowns">
 
-                <Dropdown />
-                <Dropdown />
+                <Dropdown iconClass="icon-creative" values={dropDownList} default={2} onChange={function(){}}/>
+                <Dropdown iconClass="icon-creative" values={dropDownList} default={0} onChange={function(){}}/>
 
               </div>
             </div>
@@ -90,24 +99,12 @@ class Filter extends Component {
 
             <div className="col-md-2 left-feild">
 
-              <SidebarMenu />
+              <SideBlock>
+                <SidebarMenu title="Coldown"/>
+                <Tags title="Popular Tags"/>
+                <SelectColor title="More Filtres"/>
+              </SideBlock>
 
-              <div className="be-vidget">
-                <h3 className="letf-menu-article">
-                  Popular Tags
-                </h3>
-
-                <Tags />
-
-              </div>
-              <div className="be-vidget">
-                <h3 className="letf-menu-article">
-                  More Filtres
-                </h3>
-
-                <SelectColor />
-
-              </div>
             </div>
 
             <div className="col-md-10">
