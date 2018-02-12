@@ -9,12 +9,20 @@ class Card extends Component {
 
   handleLike() {
     const {id} = this.props.unicorn
-    this.props.onclick(id, 'like')
+    try{
+      this.props.onClick(id, 'like');
+    }catch(e){
+      //console.log(e);
+    }
   }
 
   handleComment() {
     const {id} = this.props.unicorn
-    this.props.onclick(id, 'comment')
+    try{
+      this.props.onClick(id, 'comment');
+    }catch(e){
+      //console.log(e);
+    }
   }
 
   render() {

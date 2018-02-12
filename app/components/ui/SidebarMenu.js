@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 
 class SidebarMenu extends Component {
 
+	constructor(props) {
+    super(props)
+  }
+
   render() {
     return (
       <div className="be-vidget">
 						<h3 className="letf-menu-article">
-							Coldown
+							{this.props.title}
 						</h3>
 						<div className="creative_filds_block">
 							<div className="ul">
