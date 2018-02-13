@@ -5,17 +5,17 @@ class Dropdown extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {id: 0, value: 'All Gens'};
-		this.updateList = this.updateList.bind(this);
+		this.updateActive = this.updateActive.bind(this);
 		this.toggleList = this.toggleList.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	componentDidMount() {
-		this.updateList(this.props.defaultId);
+		this.updateActive(this.props.defaultId);
 	}
 
-	updateList(id){
-		let vals =	this.props.values.filter(val => val.id == id);
+	updateActive(id){
+		const vals =	this.props.values.filter(val => val.id == id);
 		if(vals.length > 0) this.setState(vals[0]);
 	}
 	
@@ -42,13 +42,13 @@ class Dropdown extends Component {
 
   handleChange(e){
 		if(e.target.tagName == 'LI'){
-			this.updateList(e.target.data.filter);
+			this.updateActive(e.target.data.filter);
 		}else if(e.target.tagName == 'A'){
-			let eId = e.target.parentNode.getAttribute('data-filter');
-			this.updateList(eId);
+			const eId = e.target.parentNode.getAttribute('data-filter');
+			this.updateActive(eId);
 		}
     try{
-      this.props.onChange(this.getState());
+      this.props.onChange(this.state);
     }catch(e){
       //console.log(e);
     }

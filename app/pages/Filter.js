@@ -56,12 +56,30 @@ const unicorns = [{
   }
 }]
 
-//Заглушка для тэгов dropdown
+//Заглушка для Dropdown
 const dropDownList = [
   {id: 0, value: 'All Gens'},
   {id: 1, value: 'Gen - 0'},
   {id: 2, value: 'Gen - 1'},
   {id: 3, value: 'Gen - 2'},
+];
+
+//Заглушка для SideBarMenu
+const SideBarMenuList = [
+  {id: 0, value: 'Fast'},
+  {id: 1, value: 'Swift'},
+  {id: 2, value: 'Snappy'},
+  {id: 3, value: 'Brisk'},
+  {id: 4, value: 'Plodding'},
+];
+
+//Заглушка для Tags
+const TagsList = [
+  {id: 0, value: 'Nice'},
+  {id: 1, value: 'Gute'},
+  {id: 2, value: 'Usual'},
+  {id: 3, value: 'Just'},
+  {id: 4, value: 'Angry'},
 ];
 
 class Filter extends Component {
@@ -99,10 +117,16 @@ class Filter extends Component {
 
             <div className="col-md-2 left-feild">
 
-              <SideBlock>
-                <SidebarMenu title="Coldown"/>
-                <Tags title="Popular Tags"/>
-                <SelectColor title="More Filtres"/>
+              <SideBlock title="Coldown">
+                <SidebarMenu values={SideBarMenuList} defaultId={0} onChange={function(){}}/>
+              </SideBlock>
+
+              <SideBlock title="Popular Tags">
+                <Tags values={TagsList} defaultId={0} onChange={function(){}}/>
+              </SideBlock>
+
+              <SideBlock title="More Filtres">
+                <SelectColor values={TagsList} defaultId={0} onChange={function(){}}/>
               </SideBlock>
 
             </div>
