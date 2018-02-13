@@ -78,8 +78,8 @@ class Filter extends Component {
             <div className="col-md-10 ">
               <div className="for-be-dropdowns">
 
-                <Dropdown iconClass="icon-creative" values={dropDownList} default={2} onChange={function(){}}/>
-                <Dropdown iconClass="icon-creative" values={dropDownList} default={0} onChange={function(){}}/>
+                <Dropdown iconClass="icon-creative" values={dropDownList} defaultId={2} onChange={function(){}}/>
+                <Dropdown iconClass="icon-creative" values={dropDownList} defaultId={0} onChange={function(){}}/>
 
               </div>
             </div>

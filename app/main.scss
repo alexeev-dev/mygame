@@ -571,7 +571,7 @@ form.input-search{
 ==================================
 */
 .be-drop-down .drop-down-list{display: none; opacity: 0; position: absolute; top: 100%; left:-1px; z-index: 228; box-sizing: content-box; overflow: hidden; transform: scaleY(0.2);}
-.be-drop-down:hover > .drop-down-list{display: block !important; opacity: 1; transform: scaleY(1); transition: opacity 1s, transform 1s;}
+.be-drop-down.active > .drop-down-list{display: block !important; opacity: 1; transform: scaleY(1); transition: opacity 1s, transform 1s;}
 .be-drop-down{
 	position: relative; display: block; font-size:13px; color: #b4b7c1; background: #FFF; padding: 15px 80px 15px 50px; margin-bottom:10px; border: 1px solid #edeff2; cursor: pointer; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;
 	&:hover{border: 1px solid #0d58c8;}
