@@ -126,7 +126,7 @@ class Filter extends Component {
               </SideBlock>
 
               <SideBlock title="More Filtres">
-                <SelectColor values={TagsList} defaultId={0} onChange={function(){}}/>
+                <SelectColor onChange={function(){}}/>
               </SideBlock>
 
             </div>

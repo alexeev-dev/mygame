@@ -2,19 +2,67 @@ import React, { Component } from 'react';
 
 class SelectColor extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state = {index: -1};
+    this.toggleSelector = this.toggleSelector.bind(this);
+    this.updateActive = this.updateActive.bind(this);
   }
+
+  toggleSelector(e){
+    e.preventDefault();
+
+		let cont = e.target;
+
+		while(cont.tagName != 'LI'){
+			cont = cont.parentNode;
+			if(cont.tagName == 'BODY') break;
+		}
+
+		if(typeof cont.classList != 'undefined'){
+			cont.classList.toggle('active');
+		}else if(typeof cont.className != 'undefined'){
+			if(cont.className.indexOf('active') !== -1){
+				cont.className = cont.className.replace(/(\s)?active/i, '');
+			}else{
+				cont.className += ' active';
+			}
+		}
+  }
+
+  updateActive(e){
+    if(e.target.tagName == 'LI'){
+      e.stopPropagation();
+    }
+
+    let cont = e.target;
+
+		while(cont.tagName != 'UL'){
+			cont = cont.parentNode;
+			if(cont.tagName == 'BODY') break;
+    }
+    
+    const index = [].indexOf.call(cont.children, e.target);
+    this.setState({index});
+
+    try{
+      this.props.onChange({index});
+    }catch(e){
+      //console.log(e);
+    }
+    cont.click(); //trigger для события закрытия блока селектора
+	}
+
   render() {
     return (
       <div className="filter-block">
         <ul>
-          <li><a><i className="fa fa-paint-brush"></i>Color</a>
+          <li onClick={this.toggleSelector}><a><i className="fa fa-paint-brush"></i>Color</a>
             <div className="be-popup be-color-picker">
               <h3 className="letf-menu-article">
                 Choose color
               </h3>
               <div className="for-colors">
-                <ul className="colors  cfix">
+                <ul className="colors  cfix" onClick={this.updateActive}>
                   <li data-filter=".category-1" className="color filter color-0-0"></li>
                   <li data-filter=".category-2" className="color filter color-0-1"></li>
                   <li data-filter=".category-3" className="color filter color-0-2"></li>

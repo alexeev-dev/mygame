@@ -16,7 +16,11 @@ class Dropdown extends Component {
 
 	updateActive(id){
 		const vals =	this.props.values.filter(val => val.id == id);
-		if(vals.length > 0) this.setState(vals[0]);
+		if(vals.length > 0){
+			this.setState(vals[0]);
+			return vals[0];
+		}
+		return null;
 	}
 	
 	toggleList(e){
@@ -41,14 +45,15 @@ class Dropdown extends Component {
 	}
 
   handleChange(e){
+		let val;
 		if(e.target.tagName == 'LI'){
 			this.updateActive(e.target.data.filter);
 		}else if(e.target.tagName == 'A'){
 			const eId = e.target.parentNode.getAttribute('data-filter');
-			this.updateActive(eId);
+			val = this.updateActive(eId);
 		}
     try{
-      this.props.onChange(this.state);
+      this.props.onChange(val);
     }catch(e){
       //console.log(e);
     }

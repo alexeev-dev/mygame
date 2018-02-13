@@ -466,6 +466,9 @@ form.input-search{
 	background: #0d58c8;
 	color: #FFF;
 }
+.filter-block li.active .be-popup{
+	display: block;
+}
 .filter-block li.be-active>i{
 	color: #FFF !important;
 }
