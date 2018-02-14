@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 
 class SelectColor extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
-      <div className="filter-block">
-        <ul>
-          <li><a><i className="fa fa-paint-brush"></i>Color</a>
-            <div className="be-popup be-color-picker">
-            <h3 className="letf-menu-article">
-                Choose color
+      <div className="be-vidget">
+        <h3 className="letf-menu-article">
+          {this.props.title}
+        </h3>
+        <div className="filter-block">
+          <ul>
+            <li><a><i className="fa fa-paint-brush"></i>Color</a>
+              <div className="be-popup be-color-picker">
+                <h3 className="letf-menu-article">
+                  Choose color
               </h3>
-              <div className="for-colors">
-                <ul className="colors  cfix">
+                <div className="for-colors">
+                  <ul className="colors  cfix">
                     <li data-filter=".category-1" className="color filter color-0-0"></li>
                     <li data-filter=".category-2" className="color filter color-0-1"></li>
                     <li data-filter=".category-3" className="color filter color-0-2"></li>
@@ -132,13 +139,14 @@ class SelectColor extends Component {
                     <li data-filter=".category-1" className="color filter color-9-9"></li>
                     <li data-filter=".category-1" className="color filter color-9-10"></li>
                     <li data-filter=".category-1" className="color filter color-9-11"></li>
-                </ul>
-              </div>
-              <i className="fa fa-times"></i>
+                  </ul>
+                </div>
+                <i className="fa fa-times"></i>
 
-            </div>
-          </li>
-        </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }

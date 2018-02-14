@@ -1,13 +1,68 @@
 import React, { Component } from 'react';
 
-
 import UnicornPreview from '../components/unicorn/Preview';
 import SidebarMenu from '../components/ui/SidebarMenu';
+import Card from '../components/Card';
 
-import Search from '../components/ui/Search';
-import Dropdown from '../components/ui/Dropdown';
+import Search from '../common/Search';
+import Dropdown from '../common/Dropdown';
+import SideBlock from '../components/ui/SideBlock';
 import Tags from '../components/ui/Tags';
 import SelectColor from '../components/ui/SelectColor';
+
+const unicorns = [{
+  id: 153330988,
+  dna: 8890509998,
+  name: 'Mr. Incredible Unicorn',
+  price: 0.042,
+  reproduction: {
+    type: 'extra',
+    price: 0.00093
+  },
+  popularity: 23.4453,
+  generation: 1,
+  tags: ['Nice', 'Gute', 'Usual', 'Just', 'Angry'],
+  owner: {
+    name: 'Alex Alexeev',
+    url: '/alex_alexeev'
+  },
+  country: 'USA',
+  counters: {
+    likes: 50,
+    views: 150,
+    comments: 20
+  }
+}, {
+  id: 153330990,
+  dna: 8890677998,
+  name: 'Testable unicorn',
+  price: 0.082,
+  reproduction: {
+    type: 'extra',
+    price: 0.00052
+  },
+  popularity: 203.51,
+  generation: 3,
+  tags: ['Nice', 'Gute', 'Usual', 'Just', 'Angry'],
+  owner: {
+    name: 'Fe Shallow',
+    url: '/fe_shallow'
+  },
+  country: 'RU',
+  counters: {
+    likes: 1,
+    views: 500,
+    comments: 4
+  }
+}]
+
+//Заглушка для тэгов dropdown
+const dropDownList = [
+  {id: 0, value: 'All Gens'},
+  {id: 1, value: 'Gen - 0'},
+  {id: 2, value: 'Gen - 1'},
+  {id: 3, value: 'Gen - 2'},
+];
 
 class Filter extends Component {
   render() {
@@ -17,14 +72,14 @@ class Filter extends Component {
           <div className="row">
             <div className="col-md-2 left-feild">
 
-              <Search />
+              <Search onChange={function(){}}/>
 
             </div>
             <div className="col-md-10 ">
               <div className="for-be-dropdowns">
 
-                <Dropdown />
-                <Dropdown />
+                <Dropdown iconClass="icon-creative" values={dropDownList} default={2} onChange={function(){}}/>
+                <Dropdown iconClass="icon-creative" values={dropDownList} default={0} onChange={function(){}}/>
 
               </div>
             </div>
@@ -44,481 +99,21 @@ class Filter extends Component {
 
             <div className="col-md-2 left-feild">
 
-              <SidebarMenu />
+              <SideBlock>
+                <SidebarMenu title="Coldown"/>
+                <Tags title="Popular Tags"/>
+                <SelectColor title="More Filtres"/>
+              </SideBlock>
 
-              <div className="be-vidget">
-                <h3 className="letf-menu-article">
-                  Popular Tags
-                </h3>
-
-                <Tags />
-
-              </div>
-              <div className="be-vidget">
-                <h3 className="letf-menu-article">
-                  More Filtres
-                </h3>
-
-                <SelectColor />
-
-              </div>
             </div>
 
             <div className="col-md-10">
               <div id="container-mix"  className="row _post-container_">
-                <div className="category-1 mix custom-column-5">
-
-                  <UnicornPreview />
-
-                </div>
-                <div className="category-2 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>fast <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
+                {unicorns.map((unicorn) => (
+                  <div key={unicorn.id} className="category-1 mix custom-column-5">
+                    <Card unicorn={unicorn}/>
                   </div>
-                </div>
-                <div className="category-3 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>swift <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-4 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>slow <i className="fa fa-info-circle"></i><i className="fa fa-clock-o"></i> > 24h.</span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-5 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-clock-o"></i> ... </span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-6 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-5 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-3 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-2 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-4 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-6 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-2 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-1 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-3 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="category-1 mix custom-column-5">
-                  <div className="be-post">
-                    <div className="info-block">
-                      <span><i className="fa fa-tag"></i> 0.042 <i className="fa fa-btc"></i></span>
-                      <span>extra <i className="fa fa-info-circle"></i><i className="fa fa-venus-mars"></i> 0.00093 <i className="fa fa-btc"></i></span>
-                    </div>
-                    <a href="#" className="be-img-block">
-                    <img src="img/p1.jpg" alt="omg" />
-                    </a>
-                    <a href="page1.html" className="be-post-title">Mr. Incredible Unicorn</a>
-                    <span className="just_part">
-                      <span><i className="fa fa-line-chart"></i> +23.4453</span>
-                      <span><i className="fa fa-cubes"></i> Gen-1</span>
-                    </span>
-                    <span>
-                      <a href="#" className="be-post-tag">Nice</a>,
-                      <a href="#" className="be-post-tag">Gute</a>,
-                      <a href="#" className="be-post-tag">Usual</a>,
-                      <a href="#" className="be-post-tag">Just</a>,
-                      <a href="#" className="be-post-tag">Angry</a>
-                    </span>
-                    <div className="author-post">
-                      <img src="img/a1.png" alt="" className="ava-author" />
-                      <span>by <a href="page1.html">Alex Alexeev <span><i className="fa fa-globe"></i> USA</span></a></span>
-                    </div>
-                    <div className="info-block">
-                      <span><i className="fa fa-heart-o" aria-hidden="true"></i> 360</span>
-                      <span><i className="fa fa-eye"></i> 789</span>
-                      <span><i className="fa fa-comment-o"></i> 20</span>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
