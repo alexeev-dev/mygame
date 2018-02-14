@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import SidebarMenu from '../components/ui/SidebarMenu';
 import ToggleSlide from '../components/ui/ToggleSlide';
 
 class PageFaq extends Component {
@@ -11,9 +10,7 @@ class PageFaq extends Component {
     			<h2 className="content-title">FAQs</h2>
     			<div className="row">
     				<div className="left-feild col-xs-12 col-sm-3">
-
-    					<SidebarMenu />
-
+    					{/* <SidebarMenu /> */}
     				</div>
     				<div className="col-xs-12 col-sm-9">
               <div className="accordion style-2">

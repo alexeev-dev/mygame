@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import {showLoginPopup} from '../actions/login-popup';
-import {signUp} from '../actions/account';
+import React, { Component } from 'react'
+
+import {showLoginPopup} from '../../actions/login-popup'
+import {signUp} from '../../actions/account'
 
 const signUpStep = (metamask, loginPopup) => {
   if (loginPopup.isOpen) {
@@ -156,8 +157,8 @@ class Hero extends Component {
 
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Hero;
+export default Hero

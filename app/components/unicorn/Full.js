@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
-import Tags from '../ui/Tags';
+import TagsList from '../common/TagsList';
 
 import UserPreview from '../user/Preview';
 
 import UnicornLikesViewsComments from './LikesViewsComments';
-import UnicornPreview from './Preview';
+import UnicornCard from '../common/UnicornCard';
 import UnicornGen from './Gen';
 import UnicornName from './Name';
 import UnicornShare from './Share';
@@ -44,7 +44,7 @@ class UnicornFull extends Component {
     									<div className="be-bottom">
     										<h4 className="be-bottom-title">Tags</h4>
 
-                        <Tags />
+                        <TagsList />
 
     									</div>
     								</div>
@@ -72,7 +72,7 @@ class UnicornFull extends Component {
     						<h3 className="info-block-label"><i className="fa fa-child"></i> Owner</h3>
     					</div>
 
-              <UnicornPreview />
+              <UnicornCard />
 
     					<br /><br />
 
@@ -80,10 +80,10 @@ class UnicornFull extends Component {
     					<div  className="swiper-container" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
     						<div className="swiper-wrapper">
     							<div className="swiper-slide">
-    								<UnicornPreview />
+    								<UnicornCard />
     							</div>
     							<div className="swiper-slide">
-    								<UnicornPreview />
+    								<UnicornCard />
     							</div>
     						</div>
     						<div className="pagination">
@@ -95,16 +95,16 @@ class UnicornFull extends Component {
     					<div  className="swiper-container" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
     						<div className="swiper-wrapper">
     							<div className="swiper-slide">
-    								<UnicornPreview />
+    								<UnicornCard />
     							</div>
     							<div className="swiper-slide">
-    								<UnicornPreview />
+    								<UnicornCard />
     							</div>
     							<div className="swiper-slide">
-    								<UnicornPreview />
+    								<UnicornCard />
     							</div>
     							<div className="swiper-slide">
-    								<UnicornPreview />
+    								<UnicornCard />
     							</div>
     						</div>
     						<div className="pagination">

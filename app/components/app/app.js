@@ -10,7 +10,7 @@ import UnicornFull from '../unicorn/Full';
 import PopupInvite from '../popups/Invite';
 import PopupRegister from '../popups/Register';
 
-import Marketplace from '../../pages/Marketplace';
+import Marketplace from '../Marketplace';
 import PageStock from '../../pages/Stock';
 import PageLaboratory from '../../pages/Laboratory';
 
