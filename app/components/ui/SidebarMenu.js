@@ -4,7 +4,6 @@ class SidebarMenu extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {id: -1, value: 'All'};
 		this.updateActive = this.updateActive.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -20,6 +19,7 @@ class SidebarMenu extends Component {
 
 	handleChange(e){
 		e.preventDefault();
+		e.stopPropagation();
 		let val;
 		if(e.target.tagName == 'A'){
 			const eId = e.target.getAttribute('data-filter');
@@ -34,12 +34,14 @@ class SidebarMenu extends Component {
 
 	render() {
 
-		const menuList = this.props.values.map((val) => (
-			<a key={val.id} className={["filter", val.id == this.state.id ? " active" : ""].join("")} data-filter={val.id}>
+		const menuList = this.props.values.map((val) => {
+			if(val.id < 0) return;
+			return(
+			<a key={val.id} className={["filter", val.id == this.props.val.id ? " active" : ""].join("")} data-filter={val.id}>
 				{val.value}
 			</a>
-
-		))
+			)}
+		)
 
 		return (
 

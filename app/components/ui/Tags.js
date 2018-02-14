@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Tags extends Component {
   constructor(props) {
     super(props)
-    this.state = {id: -1, value: 'All'};
 		this.updateActive = this.updateActive.bind(this);
 		this.handleChange = this.handleChange.bind(this);
   }
@@ -19,6 +18,7 @@ class Tags extends Component {
 
 	handleChange(e){
     e.preventDefault();
+    e.stopPropagation();
     let val;
 		if(e.target.tagName == 'A'){
 			const eId = e.target.getAttribute('data-filter');
@@ -33,9 +33,10 @@ class Tags extends Component {
 
   render() {
 
-    const list = this.props.values.map((val) => (
-      <li key={val.id}><a href="#" className={["be-post-tag", val.id == this.state.id ? " active" : ""].join("")} data-filter={val.id}>{val.value}</a> </li>
-		))
+    const list = this.props.values.map((val) => 
+    { if(val.id < 0) return;
+      return (<li key={val.id}><a href="#" className={["be-post-tag", val.id == this.props.val.id ? " active" : ""].join("")} data-filter={val.id}>{val.value}</a> </li>)
+    })
 
     return (
         <div className="tags_block clearfix">

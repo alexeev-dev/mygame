@@ -3,30 +3,19 @@ import React, { Component } from 'react';
 class SelectColor extends Component {
   constructor(props) {
     super(props);
-    this.state = {index: -1};
+    this.state = {
+      active: false,
+      index: -1,
+    };
     this.toggleSelector = this.toggleSelector.bind(this);
     this.updateActive = this.updateActive.bind(this);
   }
 
   toggleSelector(e){
     e.preventDefault();
+    e.stopPropagation();
 
-		let cont = e.target;
-
-		while(cont.tagName != 'LI'){
-			cont = cont.parentNode;
-			if(cont.tagName == 'BODY') break;
-		}
-
-		if(typeof cont.classList != 'undefined'){
-			cont.classList.toggle('active');
-		}else if(typeof cont.className != 'undefined'){
-			if(cont.className.indexOf('active') !== -1){
-				cont.className = cont.className.replace(/(\s)?active/i, '');
-			}else{
-				cont.className += ' active';
-			}
-		}
+    this.setState({active: !this.state.active});
   }
 
   updateActive(e){
@@ -47,7 +36,7 @@ class SelectColor extends Component {
     try{
       this.props.onChange({index});
     }catch(e){
-      //console.log(e);
+      console.log(e);
     }
     cont.click(); //trigger для события закрытия блока селектора
 	}
@@ -56,7 +45,7 @@ class SelectColor extends Component {
     return (
       <div className="filter-block">
         <ul>
-          <li onClick={this.toggleSelector}><a><i className="fa fa-paint-brush"></i>Color</a>
+          <li className={["closeall", this.state.active ? " active" : ""].join("")} onClick={this.toggleSelector}><a><i className="fa fa-paint-brush"></i>Color</a>
             <div className="be-popup be-color-picker">
               <h3 className="letf-menu-article">
                 Choose color

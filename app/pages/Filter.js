@@ -9,6 +9,7 @@ import Dropdown from '../common/Dropdown';
 import SideBlock from '../components/ui/SideBlock';
 import Tags from '../components/ui/Tags';
 import SelectColor from '../components/ui/SelectColor';
+import FilterControls from '../components/ui/FilterControls';
 
 const unicorns = [{
   id: 153330988,
@@ -66,6 +67,7 @@ const dropDownList = [
 
 //Заглушка для SideBarMenu
 const SideBarMenuList = [
+  {id: -1, value: 'All'},
   {id: 0, value: 'Fast'},
   {id: 1, value: 'Swift'},
   {id: 2, value: 'Snappy'},
@@ -75,6 +77,7 @@ const SideBarMenuList = [
 
 //Заглушка для Tags
 const TagsList = [
+  {id: -1, value: 'All'},
   {id: 0, value: 'Nice'},
   {id: 1, value: 'Gute'},
   {id: 2, value: 'Usual'},
@@ -83,34 +86,73 @@ const TagsList = [
 ];
 
 class Filter extends Component {
+  constructor(props) {
+    super(props)
+    this.initState = {
+      updated: 0,
+      drop1: dropDownList[0],
+      drop2: dropDownList[0],
+      sidebar: SideBarMenuList[0],
+      tag: TagsList[0],
+      color: {index: 0},
+    };
+		this.state = this.initState;
+    this.resetAll = this.resetAll.bind(this);
+    this.resetItem = this.resetAll.bind(this);
+    this.closeAll = this.closeAll.bind(this);
+    this.updateItem = this.updateItem.bind(this);
+  }
+
+  updateItem(obj){
+    this.setState(obj);
+  }
+
+  resetAll(){
+    this.setState(this.initState);
+  }
+
+  resetItem(item){
+    this.setState(this.initState[item]);
+  }
+
+  closeAll(e){
+    let activeElems = document.querySelectorAll('.closeall.active');
+    [].forEach.call(activeElems, (elem) => {
+      if(typeof elem.classList != 'undefined'){
+        elem.classList.remove('active');
+      }else if(typeof elem.className != 'undefined'){
+        elem.className = cont.className.replace(/(\s)?active/i, '');
+      }
+    });
+  }
+  
   render() {
     return (
-      <section>
+      <section onClick={this.closeAll}>
         <div className="container-fluid cd-main-content custom-container">
           <div className="row">
             <div className="col-md-2 left-feild">
 
-              <Search onChange={function(){}}/>
+              <Search onChange={(val) => {}}/>
 
             </div>
             <div className="col-md-10 ">
               <div className="for-be-dropdowns">
-
-                <Dropdown iconClass="icon-creative" values={dropDownList} defaultId={2} onChange={function(){}}/>
-                <Dropdown iconClass="icon-creative" values={dropDownList} defaultId={0} onChange={function(){}}/>
-
+                <Dropdown iconClass="icon-creative" values={dropDownList} val={this.state.drop1} onChange={(obj) => {this.updateItem({drop1: obj})}}/>
+                <Dropdown iconClass="icon-creative" values={dropDownList} val={this.state.drop2} onChange={(obj) => {this.updateItem({drop2: obj})}}/>
               </div>
             </div>
           </div>
         </div>
         <div className="s_keywords">
           <div className="container-fluid custom-container">
-            <a className="btn color-1 size-3 hover-10"><i className="fa fa-trash-o"></i>clear all filters</a>
-            <a className="btn color-6 size-3 hover-10">gen-0 <i className="fa keyword fa-times"></i></a>
-            <a className="btn color-6 size-3 hover-10">nice <i className="fa keyword fa-times"></i></a>
-            <a className="btn color-6 size-3 hover-10">swift <i className="fa keyword fa-times"></i></a>
-            <a className="btn color-6 size-3 hover-10">#ffffff <i className="fa keyword fa-times"></i></a>
-          </div>
+            <FilterControls rowClass="btn color-1 size-3 hover-10" icoClass="fa fa-trash-o" onClick={() => this.resetAll()} val="clear all filters" />
+            <FilterControls rowClass="btn color-6 size-3 hover-10" icoClass="fa keyword fa-times" onClick={() => this.resetItem('drop1')} val={this.state.drop1.value} />
+            <FilterControls rowClass="btn color-6 size-3 hover-10" icoClass="fa keyword fa-times" onClick={() => this.resetItem('drop2')} val={this.state.drop2.value} />
+            <FilterControls rowClass="btn color-6 size-3 hover-10" icoClass="fa keyword fa-times" onClick={() => this.resetItem('sidebar')} val={this.state.sidebar.value} />
+            <FilterControls rowClass="btn color-6 size-3 hover-10" icoClass="fa keyword fa-times" onClick={() => this.resetItem('tag')} val={this.state.tag.value} />
+            <FilterControls rowClass="btn color-6 size-3 hover-10" icoClass="fa keyword fa-times" onClick={() => this.resetItem('color')} val={this.state.color.index} />
+          </div> 
         </div>
         <div className="container-fluid custom-container">
           <div className="row">
@@ -118,15 +160,15 @@ class Filter extends Component {
             <div className="col-md-2 left-feild">
 
               <SideBlock title="Coldown">
-                <SidebarMenu values={SideBarMenuList} defaultId={0} onChange={function(){}}/>
+                <SidebarMenu values={SideBarMenuList} val={this.state.sidebar} onChange={(obj) => {this.updateItem({sidebar: obj})}}/>
               </SideBlock>
 
               <SideBlock title="Popular Tags">
-                <Tags values={TagsList} defaultId={0} onChange={function(){}}/>
+                <Tags values={TagsList} val={this.state.tag} onChange={(obj) => {this.updateItem({tag: obj})}}/>
               </SideBlock>
 
               <SideBlock title="More Filtres">
-                <SelectColor onChange={function(){}}/>
+                <SelectColor onChange={(obj) => {this.updateItem({color: obj})}}/>
               </SideBlock>
 
             </div>
