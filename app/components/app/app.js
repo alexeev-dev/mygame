@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import Header from './Header';
 import Footer from './Footer';
 
-import UnicornFull from '../unicorn/Full';
+import UnicornPage from '../Unicorn'
 
 import PopupInvite from '../popups/Invite';
 import PopupRegister from '../popups/Register';
@@ -84,7 +84,7 @@ class App extends Component {
 				<Route path='/stock' component={PageStock} />
 				<Route path='/laboratory' component={PageLaboratory} />
 
-        <Route path='/unicorn' component={UnicornFull} />
+        <Route path='/unicorn' component={UnicornPage} />
 
 				<Route path='/owner' component={PageUser} />
 				<Route path='/actions' component={PageActions} />
