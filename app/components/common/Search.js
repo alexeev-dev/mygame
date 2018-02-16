@@ -8,17 +8,17 @@ class Search extends Component {
 
   handleChange(e){
     e.preventDefault();
-    try{
-      this.props.onChange(e.target.value);
-    }catch(e){
-      //console.log(e);
+    const {onChange} = this.props
+    if (typeof onChange === 'function') {
+      onChange(e.target.value)
     }
   }
 
   render() {
+    const {value} = this.props
     return (
       <form action="./" className="input-search" onSubmit={this.handleChange}>
-        <input type="text" required="" placeholder="Enter Unicorn Name" onChange={this.handleChange}/>
+        <input type="text" value={value} required placeholder="Enter Unicorn Name" onChange={this.handleChange}/>
           <i className="fa fa-search"></i>
           <input type="submit" value="" />
       </form>

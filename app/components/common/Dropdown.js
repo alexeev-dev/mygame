@@ -12,7 +12,6 @@ class Dropdown extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			current: props.value,
 			isOpen: false
 		}
 		this.toggleList = this.toggleList.bind(this)
@@ -28,18 +27,17 @@ class Dropdown extends Component {
   handleChange(e){
 		const {items, onChange} = this.props
 		const current = getValueId(e)
-		this.setState({current})
 		if (typeof onChange === 'function') {
-			onChange(items[current].value)
+			onChange(current, items[current])
 		}
 	}
 
   render() {
-		const {isOpen, current} = this.state
-		const {icon, items} = this.props
+		const {icon, items, value} = this.props
+		const {isOpen} = this.state
 
-		const dropList = items.map(({value, title}, index) => (
-			<li key={value} className={"filter" + (index === current ? " active" : "")} data-id={index}>
+		const dropList = items.map((title, index) => (
+			<li key={title} className={"filter" + (index === value ? " active" : "")} data-id={index}>
 				<a>{title}</a>
 			</li>
 		))
@@ -47,7 +45,7 @@ class Dropdown extends Component {
     return (
 			<div className={"be-drop-down closeall" + (isOpen ? " active" : "")} onClick={this.toggleList}>
 				<i className={icon}></i>
-				<span className="be-dropdown-content">{items[current].title}
+				<span className="be-dropdown-content">{items[value]}
 				</span>
 				<ul className="drop-down-list" onClick={this.handleChange}>
 					{dropList}

@@ -10,6 +10,9 @@ exports.files = {
 };
 
 exports.plugins = {
-  babel: {presets: ['env', 'react']}, 
+  babel: {
+    presets: ['env', 'react'],
+    plugins: ['transform-object-rest-spread']
+  },
   sass: {mode: 'native'}
 };
