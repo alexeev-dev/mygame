@@ -10,6 +10,8 @@ import UnicornPage from '../Unicorn'
 import PopupInvite from '../popups/Invite';
 import PopupRegister from '../popups/Register';
 
+import GetUnicorn from '../GetUnicorn'
+
 import Marketplace from '../Marketplace';
 import PageStock from '../../pages/Stock';
 import PageLaboratory from '../../pages/Laboratory';
@@ -83,6 +85,7 @@ class App extends Component {
 				<Route exact path='/' component={Marketplace}/>
 				<Route path='/stock' component={PageStock} />
 				<Route path='/laboratory' component={PageLaboratory} />
+				<Route path='/getunicorn' component={GetUnicorn} />
 
         <Route path='/unicorn' component={UnicornPage} />
 
