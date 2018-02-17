@@ -36,9 +36,9 @@ class Dropdown extends Component {
 		const {icon, items, value} = this.props
 		const {isOpen} = this.state
 
-		const dropList = items.map((title, index) => (
-			<li key={title} className={"filter" + (index === value ? " active" : "")} data-id={index}>
-				<a>{title}</a>
+		const dropList = items.map((item, index) => (
+			<li key={index} className={"filter" + (index === value ? " active" : "")} data-id={index}>
+				<a>{item}</a>
 			</li>
 		))
 

@@ -28,8 +28,12 @@ class Card extends Component {
   render() {
     const unicorn = this.props.unicorn
    
-    const tags = unicorn.tags.map((tag) => (
-      <a key={tag} href="#" className="be-post-tag">{tag}</a>
+    // const tags = unicorn.tags.map((tag) => (
+    //   <a key={tag} href="#" className="be-post-tag">{tag}</a>
+    // ))
+
+    const stats = Object.keys(unicorn.stats).map((stat) => (
+      <a key={stat} href="#" className={"be-post-tag " + stat}>{unicorn.stats[stat]}</a>
     ))
 
     return (
@@ -47,7 +51,7 @@ class Card extends Component {
           <span><i className="fa fa-cubes"></i> Gen-{unicorn.generation}</span>
         </span>
         <span>
-          {tags}
+          {stats}
         </span>
         <div className="author-post">
           <img src="img/a1.png" alt="" className="ava-author" />

@@ -1,24 +1,36 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import {updateFilter} from '../../../actions/marketplace'
+
 import SideBlock from '../../common/SideBlock'
 import SideMenu from '../../common/SideMenu'
 import TagsList from '../../common/TagsList'
 import SelectColor from '../../common/SelectColor'
 
-const sideMenu = ['Fast', 'Swift', 'Snappy', 'Brisk', 'Plodding']
+//const sideMenu = ['Fast', 'Swift', 'Snappy', 'Brisk', 'Plodding']
+const sideMenu = ['All', 'For sale', 'Siring']
 const popularTags = ['Nice', 'Gute', 'Usual', 'Just', 'Angry']
 
+const mapStateToProps = ({marketplace}) => {
+  const {sideMenu} = marketplace.filters
+  return {
+    sideMenuValue: sideMenu,
+  }
+}
+
 const mapDispatchToProps = (dispatch) => ({
-  handleMenu: (value) => {console.log(`Menu: ${value}`)},
+  handleFilter: (type) => (value) => {
+    dispatch(updateFilter(type, value))
+  },
   handleTag: (value) => {console.log(`Tag: ${value}`)},
   handleColor: (value) => {console.log(`Color: ${value}`)}
 })
 
-const SideFilters = ({handleMenu, handleTag, handleColor}) => (
+const SideFilters = ({sideMenuValue, handleFilter, handleTag, handleColor}) => (
   <div className="col-md-2 left-feild">
-    <SideBlock title="Coldown">
-      <SideMenu items={sideMenu} value={0} onChange={handleMenu} />
+    <SideBlock title="Get yous">
+      <SideMenu items={sideMenu} value={sideMenuValue} onChange={handleFilter('sideMenu')} />
     </SideBlock>
 
     <SideBlock title="Popular Tags">
@@ -31,4 +43,4 @@ const SideFilters = ({handleMenu, handleTag, handleColor}) => (
   </div>
 )
 
-export default connect(null, mapDispatchToProps)(SideFilters)
+export default connect(mapStateToProps, mapDispatchToProps)(SideFilters)

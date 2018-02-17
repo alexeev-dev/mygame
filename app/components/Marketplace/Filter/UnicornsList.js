@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
     popularity: 23.4453,
     generation: 1,
     tags: ['Nice', 'Gute', 'Usual', 'Just', 'Angry'],
+    stats: {strenth: 2, agility: 1, speed: 5, intelligence: 7, charisma: 2},
     owner: {
       name: 'Alex Alexeev',
       url: '/alex_alexeev'
@@ -38,6 +39,7 @@ const mapStateToProps = (state) => ({
     popularity: 203.51,
     generation: 3,
     tags: ['Nice', 'Gute', 'Usual', 'Just', 'Angry'],
+    stats: {strenth: 2, agility: 1, speed: 5, intelligence: 7, charisma: 2},
     owner: {
       name: 'Fe Shallow',
       url: '/fe_shallow'
