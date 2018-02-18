@@ -8,7 +8,6 @@ class SmartUnicorn {
     this.web3 = new Web3(web3.currentProvider)
     this.contract = this.web3.eth.contract(ABI).at(CONTRACT_ADDRESS)
     this.account = this.web3.eth.accounts[0]
-    console.log(this.contract)
   }
 
   getPrice() {
@@ -24,7 +23,6 @@ class SmartUnicorn {
         }
       })
     })
-    return
   }
 
   getUnicorn(id) {

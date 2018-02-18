@@ -14,5 +14,10 @@ exports.plugins = {
     presets: ['env', 'react'],
     plugins: ['transform-object-rest-spread']
   },
+  brunchTypescript: {
+    'typeRoots': [
+      'node_modules/@types'
+    ]
+  },
   sass: {mode: 'native'}
 };

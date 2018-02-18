@@ -10,7 +10,9 @@
     "build": "brunch build --production"
   },
   "dependencies": {
+    "@pixi/filter-multi-color-replace": "^2.5.0",
     "dexie": "^2.0.1",
+    "pixi.js": "^4.7.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -22,6 +24,7 @@
     "web3": "0.20.5"
   },
   "devDependencies": {
+    "@types/pixi.js": "^4.7.1",
     "auto-reload-brunch": "^2",
     "babel-brunch": "~6.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -31,6 +34,7 @@
     "clean-css-brunch": "^2",
     "redux-devtools-extension": "^2.13.2",
     "sass-brunch": "^2.10.4",
+    "typescript-brunch": "^2.3.0",
     "uglify-js-brunch": "^2"
   }
 }
