@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const UnicornInfo = ({unicorn}) => (
+const UnicornInfo = ({ unicorn }) => (
   <div className="be-large-post">
     <div className="info-block">
       <div className="be-large-post-align">
@@ -25,12 +25,26 @@ const UnicornInfo = ({unicorn}) => (
       <div className="row">
         <div className="col-xs-12 col-sm-6">
           <div className="be-bottom">
+            <h4 className="be-bottom-title">Stats</h4>
+            <div className="tags_block clearfix">
+              <ul>
+                {Object.keys(unicorn.stats).map((stat) => (
+                  <li key={stat}><a href="#" className={"be-post-tag " + stat}>{unicorn.stats[stat]}</a></li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xs-12 col-sm-6">
+          <div className="be-bottom">
             <h4 className="be-bottom-title">Tags</h4>
             <div className="tags_block clearfix">
               <ul>
-              {unicorn.tags.map((tag) => (
-                <li  key={tag}><a href="#" className="be-post-tag">{tag}</a> </li>
-              ))}
+                {unicorn.tags.map((tag) => (
+                  <li key={tag}><a href="#" className="be-post-tag">{tag}</a> </li>
+                ))}
               </ul>
             </div>
           </div>
