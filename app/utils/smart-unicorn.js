@@ -1,93 +1,8 @@
 import Web3 from 'web3'
-// Here's how we would access our contract:
-const ABI = [
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "zombies",
-		"outputs": [
-			{
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"name": "dna",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "zombieId",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"name": "dna",
-				"type": "uint256"
-			}
-		],
-		"name": "NewZombie",
-		"type": "event"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_name",
-				"type": "string"
-			}
-		],
-		"name": "createRandomZombie",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]
-
-const CONTRACT_ADDRESS = '0x07dB39EeA5e6418197d84d3fC7fd2aBf3D7e1b91'
-
-const repeatString = (str, size) => {
-  let result = str
-  while (result.length < size) {
-    result += str
-  }
-  return result
-}
-
-const makeUnicorn = (zombieId, name, dna) => {
-	const dnaStr = repeatString(String(dna), 16)
-	return {
-		headChoice: dnaStr.substring(0, 2) % 3 + 1,
-		hairChoice: dnaStr.substring(2, 4) % 3 + 1,
-		cornChoice: dnaStr.substring(4, 6) % 1 + 1,
-		earsChoice: dnaStr.substring(6, 8) % 1 + 1,
-		eyesChoise: dnaStr.substring(8, 10) % 1 + 1,
-		headColor: parseInt(dnaStr.substring(10, 12) / 100 * 360),
-		hairColor: parseInt(dnaStr.substring(12, 14) / 100 * 360),
-		zombieName: name,
-	}
-}
 
 class SmartUnicorn {
 	constructor() {
+		/*
 		this.handleAccount = this.handleAccount.bind(this)
 		this.handleMetamask = this.handleMetamask.bind(this)
 		this.watchForAccount = this.watchForAccount.bind(this)
@@ -99,6 +14,7 @@ class SmartUnicorn {
 		}
 		this.network = 1
 		this.watchForMetamask()
+		*/
 	}
 
 	watchForMetamask() {

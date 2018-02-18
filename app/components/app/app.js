@@ -43,6 +43,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    /*
     smartUnicorn.on('metamask', this.handleMetamask)
     smartUnicorn.on('account', this.handleAccount)
     smartUnicorn.on('network', this.handleNetwork)
@@ -52,7 +53,7 @@ class App extends Component {
     }
     if (info.wallet) {
       this.handleAccount(info.wallet)
-    }
+    } */
   }
 
   handleMetamask() {

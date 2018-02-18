@@ -25,13 +25,14 @@ class GetUnicorn extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      price: '1'
+      price: 1,
+      weiPrice: 1
     }
     this.smart = new SmartUnicorn()
     this.handleBuy = this.handleBuy.bind(this)
     this.handleUnicorn = this.handleUnicorn.bind(this)
     this.smart.getPrice().then((price) => {
-      this.setState({price})
+      this.setState({price: price[1], weiPrice: price[0]})
     })
     this.smart.bind('created', this.handleUnicorn)
   }
@@ -43,11 +44,24 @@ class GetUnicorn extends Component {
 
   handleBuy(event) {
     event.preventDefault()
-    this.smart.buyUnicorn(this.state.price)
+    this.smart.buyUnicorn(this.state.weiPrice)
   }
 
-  handleUnicorn(event) {
-    console.log(event)
+  handleUnicorn(error, result) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log(result.args.UnicornId, result.args.UnicornId.toNumber())
+      this.smart.getUnicorn(result.args.UnicornId.toNumber())
+        .then((result) => {
+          console.log(result[0])
+          console.log(result[1].toString())
+          console.log(result[2].toString())
+          console.log(result[3].toString())
+        })
+        .catch(console.log)
+      console.log(result)
+    }
   }
 
   render() {
@@ -60,7 +74,7 @@ class GetUnicorn extends Component {
           height="200"
           className="get-unicorn__canvas"
         >Unicorn</canvas>
-        <p className="get-unicorn__price">Unicorn price: {wei2eth(price)} ETH</p>
+        <p className="get-unicorn__price">Unicorn price: {price} ETH</p>
         <a href="" className="get-unicorn__buy" onClick={this.handleBuy}>Buy</a>
       </div>
     )
