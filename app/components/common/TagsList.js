@@ -4,7 +4,7 @@ class TagsList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tags: props.items.map(tag => ({tag, isActive: false}))
+      isActive: -1
     }
 		this.handleChange = this.handleChange.bind(this)
   }
@@ -16,24 +16,20 @@ class TagsList extends Component {
     const {onChange} = this.props
 
 		if (e.target.tagName === 'A') {
-			const current = e.target.getAttribute('data-id')
-
-      this.setState(prev => {
-        const tags = prev.tags.concat()
-        tags[current].isActive = !prev.tags[current].isActive
-        return {tags}
-      })
+      let current = e.target.getAttribute('data-id')
+      if(this.state.isActive == current) current = -1;
+      this.setState({isActive: current})
 
       if (typeof onChange === 'function') {
-        onChange(this.state.tags[current].tag)
+        onChange(current)
       }
 		}
 	}
 
   render() {
-    const tagsList = this.state.tags.map(({tag, isActive}, index) => (
-      <li key={tag}>
-        <a href="#" className={"be-post-tag" + (isActive ? " active" : "")} data-id={index}>
+    const tagsList = this.props.items.map((tag, index) => (
+      <li key={index}>
+        <a href="#" className={"be-post-tag" + (this.state.isActive == index ? " active" : "")} data-id={index}>
           {tag}
         </a>
       </li>
