@@ -19,6 +19,8 @@ function renderImage(ctx) {
   })
 }
 
+const wei2eth = wei => wei / 1e+18
+
 class GetUnicorn extends Component {
   constructor(props) {
     super(props)
@@ -58,7 +60,7 @@ class GetUnicorn extends Component {
           height="200"
           className="get-unicorn__canvas"
         >Unicorn</canvas>
-        <p className="get-unicorn__price">Unicorn price: {price} WEI</p>
+        <p className="get-unicorn__price">Unicorn price: {wei2eth(price)} ETH</p>
         <a href="" className="get-unicorn__buy" onClick={this.handleBuy}>Buy</a>
       </div>
     )
