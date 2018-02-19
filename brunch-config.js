@@ -21,3 +21,8 @@ exports.plugins = {
   },
   sass: {mode: 'native'}
 };
+
+exports.watcher = {
+  awaitWriteFinish: true,
+  //usePolling: true //less perfomance & speed effective, but more reliable way
+};
