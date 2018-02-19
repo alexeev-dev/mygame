@@ -180,7 +180,7 @@ const ABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "hybridizationId",
+				"name": "_hybridizationId",
 				"type": "uint256"
 			}
 		],
@@ -324,6 +324,20 @@ const ABI = [
 	{
 		"constant": true,
 		"inputs": [],
+		"name": "blackBoxAddress",
+		"outputs": [
+			{
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
 		"name": "paused",
 		"outputs": [
 			{
@@ -333,6 +347,24 @@ const ABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_unicornId",
+				"type": "uint256"
+			},
+			{
+				"name": "_gen",
+				"type": "bytes"
+			}
+		],
+		"name": "setGen",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -631,11 +663,11 @@ const ABI = [
 		"constant": false,
 		"inputs": [
 			{
-				"name": "hybridizationId",
+				"name": "_hybridizationId",
 				"type": "uint256"
 			},
 			{
-				"name": "_unicorn_id",
+				"name": "_unicornId",
 				"type": "uint256"
 			}
 		],
@@ -917,11 +949,6 @@ const ABI = [
 				"indexed": false,
 				"name": "unicornId",
 				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "genes",
-				"type": "bytes"
 			}
 		],
 		"name": "Birth",

@@ -33,7 +33,7 @@ class Card extends Component {
     // ))
 
     const stats = Object.keys(unicorn.stats).map((stat) => (
-      <a key={stat} href="#" className={"be-post-tag " + stat}>{unicorn.stats[stat]}</a>
+      <a key={stat} href="#" className={"be-post-tag " + stat}><span>{stat.substring(0, 3)}</span><span>{unicorn.stats[stat]}</span></a>
     ))
 
     return (
