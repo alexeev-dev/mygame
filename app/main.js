@@ -6,6 +6,9 @@ import {createStore, applyMiddleware} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk'
 
+require('es6-promise').polyfill()
+require('isomorphic-fetch')
+
 import App from './components/app/app';
 import rootReducer from './reducers';
 
