@@ -1,24 +1,12 @@
 import React, {Component} from 'react'
 import SmartUnicorn from '../utils/smart'
 import {UnicornRenderer} from '../utils/UnicornRenderer'
+import decodeDNA from '../utils/dna'
 
-const testUnicorn = {
-  BDYFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  WNGFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  HOOFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  HRNFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  EYEFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  HAIFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  NOSFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  MTHFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  EARFRM: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())},
-  STAINS: {type: Math.floor(Math.random() * 4), var: Math.floor(Math.random())}
-}
-
-function renderUnicorn(unicorn, color) {
+function renderUnicorn(dna, color) {
   return new Promise(resolve => {
     const renderer = new UnicornRenderer(300, 300)
-    renderer.render(unicorn, color, resolve)
+    renderer.render(decodeDNA(dna), color, resolve)
   })
 }
 
@@ -28,6 +16,7 @@ class GetUnicorn extends Component {
     this.state = {
       price: 1,
       weiPrice: 1,
+      status: 'start',
       unicorn: 'img/test-unicorn.png'
     }
     this.smart = new SmartUnicorn()
@@ -41,36 +30,36 @@ class GetUnicorn extends Component {
 
   handleBuy(event) {
     event.preventDefault()
-    this.smart.buyUnicorn(this.state.weiPrice)
+    this.smart.buyUnicorn(this.state.weiPrice).then(result => {
+      this.setState({status: 'creating'})
+    })
   }
 
-  handleUnicorn(error, result) {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log(result.args.UnicornId, result.args.UnicornId.toNumber())
-      this.smart.getUnicorn(result.args.UnicornId.toNumber())
-        .then((result) => {
-          renderUnicorn(testUnicorn, 0x9100a9).then((image) => {
-            this.setState({unicorn: image})
-          })
-          console.log(result[0])
-          console.log(result[1].toString())
-          console.log(result[2].toString())
-          console.log(result[3].toString())
+  handleUnicorn(unicornId) {
+    this.setState({status: 'created'})
+    this.smart.getUnicorn(unicornId)
+      .then((result) => {
+        console.log(result)
+        renderUnicorn(result.dna, 0x9100a9).then((image) => {
+          this.setState({unicorn: image, status: 'done'})
         })
-        .catch(console.log)
-      console.log(result)
-    }
+      })
+      .catch(console.log)
   }
 
   render() {
-    const {price, unicorn} = this.state
+    const {price, status, unicorn} = this.state
     return (
       <div className="get-unicorn">
         <img src={unicorn} alt="Unicorn"/>
-        <p className="get-unicorn__price">Unicorn price: {price} ETH</p>
-        <a href="" className="get-unicorn__buy" onClick={this.handleBuy}>Buy</a>
+        <p className="get-unicorn__price">
+          {status === 'start' && `Unicorn price: ${price} ETH`}
+          {status === 'creating' && 'Creating unicorn...'}
+          {status === 'created' && 'Your unicorn is created and now it in embryo state. Please wait more...'}
+          {status === 'done' && 'Your unicorn was born!'}
+        </p>
+        {status === 'start' &&
+          <a href="" className="get-unicorn__buy" onClick={this.handleBuy}>Buy</a>}
       </div>
     )
   }

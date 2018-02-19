@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 import ABI from './abi'
 
-const CONTRACT_ADDRESS = '0xE817b60E8A8a5A19F6774969F954716B7A602866'
+const CONTRACT_ADDRESS = '0xB8120295EEAa399EC5DeE8055b93c5B162035F41'
 
 class SmartUnicorn {
   constructor() {
@@ -27,7 +27,35 @@ class SmartUnicorn {
 
   getUnicorn(id) {
     return new Promise((resolve, reject) => {
-      const gen = this.contract.unicorns(id, (error, result) => {
+      const waitForGen = () => {
+        this.contract.unicorns(id, (error, result) => {
+          if (error) {
+            reject(error)
+          } else {
+            if (result[0].length > 4) {
+              resolve({
+                dna: result[0],
+                birthTime: result[1].toNumber(),
+                freezingEndTime: result[2].toNumber(),
+                freezingIndex: result[3].toNumber()
+              })
+            } else {
+              setTimeout(waitForGen, 30000)
+            }
+          }
+        })
+      }
+      waitForGen()
+    })
+  }
+
+  buyUnicorn(price) {
+    const {createUnicorn} = this.contract
+    return new Promise((resolve, reject) => {
+      createUnicorn({
+        from: this.account,
+        value: price
+      }, (error, result) => {
         if (error) {
           reject(error)
         } else {
@@ -37,22 +65,18 @@ class SmartUnicorn {
     })
   }
 
-  buyUnicorn(price) {
-    const {createUnicorn} = this.contract
-    return createUnicorn({
-      from: this.account,
-      value: price
-    }, (error, result) => {
-      if (error) {
-        console.log(error)
-      }
-    })
-  }
-
   bind(event, callback) {
     if (typeof event === 'string') {
       if (event === 'created') {
-        this.contract.CreateUnicorn(callback)
+        this.contract.CreateUnicorn((error, result) => {
+          if (error) {
+            console.log(error)
+          } else {
+            if (result.args.owner === this.account) {
+              callback(result.args.UnicornId.toNumber())
+            }
+          }
+        })
       }
     }
   }
