@@ -29,7 +29,7 @@ const UnicornInfo = ({ unicorn }) => (
             <div className="tags_block clearfix">
               <ul>
                 {Object.keys(unicorn.stats).map((stat) => (
-                  <li key={stat}><a href="#" className={"be-post-tag " + stat}>{unicorn.stats[stat]}</a></li>
+                  <li key={stat}><a href="#" className={"be-post-tag " + stat}><span>{stat.substring(0, 3)}</span><span>{unicorn.stats[stat]}</span></a></li>
                 ))}
               </ul>
             </div>

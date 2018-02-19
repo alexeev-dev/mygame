@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const getValueId = ({target}) => {
+const getValueId = ({ target }) => {
 	if (target.tagName === 'LI') {
 		return target.getAttribute('data-id')
 	} else if (target.tagName === 'A') {
@@ -18,23 +18,24 @@ class Dropdown extends Component {
 		this.handleChange = this.handleChange.bind(this)
 	}
 
-	toggleList(e){
-		e.preventDefault()
-		e.stopPropagation()
-		this.setState(prev => ({isOpen: !prev.isOpen}))
+	toggleList(e) {
+		e.preventDefault();
+		e.stopPropagation();
+
+		this.setState(prev => (this.state.isOpen = !prev.isOpen))
 	}
 
-  handleChange(e){
-		const {items, onChange} = this.props
+	handleChange(e) {
+		const { items, onChange } = this.props
 		const current = getValueId(e)
 		if (typeof onChange === 'function') {
 			onChange(current, items[current])
 		}
 	}
 
-  render() {
-		const {icon, items, value} = this.props
-		const {isOpen} = this.state
+	render() {
+		const { icon, items, value } = this.props
+		const { isOpen } = this.state
 
 		const dropList = items.map((item, index) => (
 			<li key={index} className={"filter" + (index === value ? " active" : "")} data-id={index}>
@@ -42,7 +43,7 @@ class Dropdown extends Component {
 			</li>
 		))
 
-    return (
+		return (
 			<div className={"be-drop-down closeall" + (isOpen ? " active" : "")} onClick={this.toggleList}>
 				<i className={icon}></i>
 				<span className="be-dropdown-content">{items[value]}
@@ -51,8 +52,8 @@ class Dropdown extends Component {
 					{dropList}
 				</ul>
 			</div>
-    )
-  }
+		)
+	}
 }
 
 export default Dropdown
