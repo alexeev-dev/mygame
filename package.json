@@ -12,6 +12,8 @@
   "dependencies": {
     "@pixi/filter-multi-color-replace": "^2.5.0",
     "dexie": "^2.0.1",
+    "es6-promise": "^4.2.4",
+    "isomorphic-fetch": "^2.2.1",
     "pixi.js": "^4.7.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
